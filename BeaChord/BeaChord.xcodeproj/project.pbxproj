@@ -26,6 +26,7 @@
 		EEF067E617F5D44D00EFE3A5 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEF067E517F5D44D00EFE3A5 /* Storyboard.storyboard */; };
 		EEF067EE17F5D5C300EFE3A5 /* BCMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF067ED17F5D5C300EFE3A5 /* BCMainViewController.m */; };
 		EEF067F117F5FEE600EFE3A5 /* BCConfigurationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF067F017F5FEE600EFE3A5 /* BCConfigurationViewController.m */; };
+		EEF067F417F61D8100EFE3A5 /* BCBeaconController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF067F317F61D8100EFE3A5 /* BCBeaconController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,8 @@
 		EEF067ED17F5D5C300EFE3A5 /* BCMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BCMainViewController.m; path = BeaChord/BCMainViewController.m; sourceTree = SOURCE_ROOT; };
 		EEF067EF17F5FEE600EFE3A5 /* BCConfigurationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BCConfigurationViewController.h; path = BeaChord/BCConfigurationViewController.h; sourceTree = SOURCE_ROOT; };
 		EEF067F017F5FEE600EFE3A5 /* BCConfigurationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BCConfigurationViewController.m; path = BeaChord/BCConfigurationViewController.m; sourceTree = SOURCE_ROOT; };
+		EEF067F217F61D8100EFE3A5 /* BCBeaconController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BCBeaconController.h; path = BeaChord/BCBeaconController.h; sourceTree = SOURCE_ROOT; };
+		EEF067F317F61D8100EFE3A5 /* BCBeaconController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BCBeaconController.m; path = BeaChord/BCBeaconController.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +204,8 @@
 				EEF067ED17F5D5C300EFE3A5 /* BCMainViewController.m */,
 				EEF067EF17F5FEE600EFE3A5 /* BCConfigurationViewController.h */,
 				EEF067F017F5FEE600EFE3A5 /* BCConfigurationViewController.m */,
+				EEF067F217F61D8100EFE3A5 /* BCBeaconController.h */,
+				EEF067F317F61D8100EFE3A5 /* BCBeaconController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -302,6 +307,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEF067F417F61D8100EFE3A5 /* BCBeaconController.m in Sources */,
 				EEF067EE17F5D5C300EFE3A5 /* BCMainViewController.m in Sources */,
 				A50A772D17F597B4004F8EA1 /* main.m in Sources */,
 				A5F2CB7B17F6257700652C75 /* BCBeaconView.m in Sources */,
