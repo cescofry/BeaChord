@@ -22,6 +22,9 @@
 		A50A775517F59E40004F8EA1 /* BCToneGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = A50A775417F59E40004F8EA1 /* BCToneGenerator.m */; };
 		A50A775817F5A11D004F8EA1 /* BCTone.m in Sources */ = {isa = PBXBuildFile; fileRef = A50A775717F5A11D004F8EA1 /* BCTone.m */; };
 		A50A775B17F5C4F2004F8EA1 /* BCChord.m in Sources */ = {isa = PBXBuildFile; fileRef = A50A775A17F5C4F2004F8EA1 /* BCChord.m */; };
+		EEF067E617F5D44D00EFE3A5 /* Storyboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEF067E517F5D44D00EFE3A5 /* Storyboard_iPhone.storyboard */; };
+		EEF067E817F5D46300EFE3A5 /* Storyboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEF067E717F5D46300EFE3A5 /* Storyboard_iPad.storyboard */; };
+		EEF067EE17F5D5C300EFE3A5 /* BCMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF067ED17F5D5C300EFE3A5 /* BCMainViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +60,10 @@
 		A50A775717F5A11D004F8EA1 /* BCTone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCTone.m; sourceTree = "<group>"; };
 		A50A775917F5C4F2004F8EA1 /* BCChord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCChord.h; sourceTree = "<group>"; };
 		A50A775A17F5C4F2004F8EA1 /* BCChord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCChord.m; sourceTree = "<group>"; };
+		EEF067E517F5D44D00EFE3A5 /* Storyboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard_iPhone.storyboard; sourceTree = "<group>"; };
+		EEF067E717F5D46300EFE3A5 /* Storyboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard_iPad.storyboard; sourceTree = "<group>"; };
+		EEF067EC17F5D5C300EFE3A5 /* BCMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BCMainViewController.h; path = BeaChord/BCMainViewController.h; sourceTree = SOURCE_ROOT; };
+		EEF067ED17F5D5C300EFE3A5 /* BCMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BCMainViewController.m; path = BeaChord/BCMainViewController.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +142,8 @@
 				A50A772917F597B4004F8EA1 /* InfoPlist.strings */,
 				A50A772C17F597B4004F8EA1 /* main.m */,
 				A50A772E17F597B4004F8EA1 /* BeaChord-Prefix.pch */,
+				EEF067E517F5D44D00EFE3A5 /* Storyboard_iPhone.storyboard */,
+				EEF067E717F5D46300EFE3A5 /* Storyboard_iPad.storyboard */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -187,6 +196,8 @@
 		A50A775217F59E28004F8EA1 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				EEF067EC17F5D5C300EFE3A5 /* BCMainViewController.h */,
+				EEF067ED17F5D5C300EFE3A5 /* BCMainViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -268,7 +279,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A50A772B17F597B4004F8EA1 /* InfoPlist.strings in Resources */,
+				EEF067E617F5D44D00EFE3A5 /* Storyboard_iPhone.storyboard in Resources */,
 				A50A773317F597B4004F8EA1 /* Images.xcassets in Resources */,
+				EEF067E817F5D46300EFE3A5 /* Storyboard_iPad.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +300,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEF067EE17F5D5C300EFE3A5 /* BCMainViewController.m in Sources */,
 				A50A775517F59E40004F8EA1 /* BCToneGenerator.m in Sources */,
 				A50A772D17F597B4004F8EA1 /* main.m in Sources */,
 				A50A775B17F5C4F2004F8EA1 /* BCChord.m in Sources */,
@@ -494,6 +508,7 @@
 				A50A774B17F597B4004F8EA1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A50A774C17F597B4004F8EA1 /* Build configuration list for PBXNativeTarget "BeaChordTests" */ = {
 			isa = XCConfigurationList;
@@ -502,6 +517,7 @@
 				A50A774E17F597B4004F8EA1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
