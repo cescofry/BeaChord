@@ -11,9 +11,9 @@
 @interface BCMainViewController ()
 
 @property (nonatomic, strong) IBOutlet UISwitch *modeSwitch;
-@property (nonatomic, strong) IBOutlet UILabel *udidLbl;
+@property (nonatomic, strong) IBOutlet UILabel *udidLabel;
 @property (nonatomic, strong) IBOutlet UISegmentedControl *segmentedControl;
-@property (nonatomic, strong) IBOutlet UIButton *startBtn;
+@property (nonatomic, strong) IBOutlet UIButton *startButton;
 
 
 
