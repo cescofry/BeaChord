@@ -8,17 +8,22 @@
 
 #import "BCAppDelegate.h"
 #import "BCTone.h"
+#import "BCChord.h"
 
 @implementation BCAppDelegate
 
 - (void)playToneDirectlyFromTheAppDelegate {
-    BCTone *la = [BCTone toneFromNote:BCNoteA];
-    [la play];
+    BCTone *c = [BCTone toneFromNote:BCNoteC];
+    BCTone *e = [BCTone toneFromNote:BCNoteE];
+    BCTone *g = [BCTone toneFromNote:BCNoteG];
+    BCChord *chord = [BCChord chordWithTones:@[c, e, g]];
+    [chord play];
     
-    double delayInSeconds = 2.0;
+    
+    double delayInSeconds = 10.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [la stop];
+        [chord stop];
     });
 }
 

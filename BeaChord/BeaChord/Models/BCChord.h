@@ -8,6 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
+@class BCTone;
+
 @interface BCChord : NSObject
+
+@property(nonatomic, strong) NSArray *tones;
+
++(instancetype)chordWithTones:(NSArray *)tones;
++(instancetype)majorChordFromTone:(BCTone *)tone;
++(instancetype)minorChordFromTone:(BCTone *)tone;
+
+- (void)play;
+- (void)stop;
+- (void)arpeggio;
 
 @end
