@@ -19,6 +19,7 @@
 		A50A773C17F597B4004F8EA1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A50A772417F597B4004F8EA1 /* UIKit.framework */; };
 		A50A774417F597B4004F8EA1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A50A774217F597B4004F8EA1 /* InfoPlist.strings */; };
 		A50A774617F597B4004F8EA1 /* BeaChordTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A50A774517F597B4004F8EA1 /* BeaChordTests.m */; };
+		A50A775517F59E40004F8EA1 /* BCToneGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = A50A775417F59E40004F8EA1 /* BCToneGenerator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,8 @@
 		A50A774117F597B4004F8EA1 /* BeaChordTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BeaChordTests-Info.plist"; sourceTree = "<group>"; };
 		A50A774317F597B4004F8EA1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A50A774517F597B4004F8EA1 /* BeaChordTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BeaChordTests.m; sourceTree = "<group>"; };
+		A50A775317F59E40004F8EA1 /* BCToneGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCToneGenerator.h; sourceTree = "<group>"; };
+		A50A775417F59E40004F8EA1 /* BCToneGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCToneGenerator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +110,10 @@
 		A50A772617F597B4004F8EA1 /* BeaChord */ = {
 			isa = PBXGroup;
 			children = (
+				A50A774F17F59E28004F8EA1 /* Libs */,
+				A50A775017F59E28004F8EA1 /* Views */,
+				A50A775117F59E28004F8EA1 /* Models */,
+				A50A775217F59E28004F8EA1 /* Controllers */,
 				A50A772F17F597B4004F8EA1 /* BCAppDelegate.h */,
 				A50A773017F597B4004F8EA1 /* BCAppDelegate.m */,
 				A50A773217F597B4004F8EA1 /* Images.xcassets */,
@@ -142,6 +149,36 @@
 				A50A774217F597B4004F8EA1 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A50A774F17F59E28004F8EA1 /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+				A50A775317F59E40004F8EA1 /* BCToneGenerator.h */,
+				A50A775417F59E40004F8EA1 /* BCToneGenerator.m */,
+			);
+			path = Libs;
+			sourceTree = "<group>";
+		};
+		A50A775017F59E28004F8EA1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A50A775117F59E28004F8EA1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A50A775217F59E28004F8EA1 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,6 +277,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A50A775517F59E40004F8EA1 /* BCToneGenerator.m in Sources */,
 				A50A772D17F597B4004F8EA1 /* main.m in Sources */,
 				A50A773117F597B4004F8EA1 /* BCAppDelegate.m in Sources */,
 			);
