@@ -42,6 +42,10 @@ OSStatus RenderTone(
     NSLog(@"inc: %f", theta_increment);
     
 	// This is a mono tone generator so we only need the first buffer
+    
+#warning //TODO: work with channel for stereo.
+    
+    
 	const int channel = 0;
 	Float32 *buffer = (Float32 *)ioData->mBuffers[channel].mData;
 	
