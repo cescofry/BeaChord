@@ -1,5 +1,5 @@
 //
-//  BCBeaconView.h
+//  BCIndicatorView.h
 //  BeaChord
 //
 //  Created by Francesco Frison on 27/09/2013.
@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BCBeaconView : UIView
+@interface BCIndicatorView : UIView
+
+@property (nonatomic, assign) NSInteger value;
+@property (nonatomic, assign) NSInteger max;
 
 @end
