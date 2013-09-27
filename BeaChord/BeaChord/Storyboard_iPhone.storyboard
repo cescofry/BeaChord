@@ -50,8 +50,27 @@
                     <view key="view" contentMode="scaleToFill" id="oCl-ge-AMQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="19m-Fr-bRT">
+                                <rect key="frame" x="142" y="518" width="37" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Done">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="done:" destination="hRO-SX-2KC" eventType="touchUpInside" id="8tR-my-YUV"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="19m-Fr-bRT" secondAttribute="bottom" constant="20" symbolic="YES" id="H2E-Vx-JDQ"/>
+                            <constraint firstAttribute="centerX" secondItem="19m-Fr-bRT" secondAttribute="centerX" id="K5E-fU-XcC"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="doneButton" destination="19m-Fr-bRT" id="nF7-PG-LEe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wBH-OJ-7AK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

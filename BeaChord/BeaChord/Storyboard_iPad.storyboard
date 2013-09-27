@@ -50,8 +50,27 @@
                     <view key="view" contentMode="scaleToFill" id="W8g-Zu-UUd">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FK7-sq-ifi">
+                                <rect key="frame" x="366" y="974" width="37" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Done">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="done:" destination="sv5-3c-ARe" eventType="touchUpInside" id="8LS-OA-oN6"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Fkm-eb-v4f" firstAttribute="top" secondItem="FK7-sq-ifi" secondAttribute="bottom" constant="20" id="Cew-Mp-MU4"/>
+                            <constraint firstItem="FK7-sq-ifi" firstAttribute="centerX" secondItem="W8g-Zu-UUd" secondAttribute="centerX" id="Spw-5i-U2g"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="doneButton" destination="FK7-sq-ifi" id="CHY-6j-SaW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c5K-89-kw4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

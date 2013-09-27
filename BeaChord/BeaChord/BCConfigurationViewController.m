@@ -10,9 +10,16 @@
 
 @interface BCConfigurationViewController ()
 
+@property (weak, nonatomic) IBOutlet UIButton *doneButton;
+
+- (IBAction)done:(id)sender;
+
 @end
 
 @implementation BCConfigurationViewController
 
+- (IBAction)done:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end
