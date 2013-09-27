@@ -22,8 +22,7 @@
 		A50A775817F5A11D004F8EA1 /* BCTone.m in Sources */ = {isa = PBXBuildFile; fileRef = A50A775717F5A11D004F8EA1 /* BCTone.m */; };
 		A50A775B17F5C4F2004F8EA1 /* BCChord.m in Sources */ = {isa = PBXBuildFile; fileRef = A50A775A17F5C4F2004F8EA1 /* BCChord.m */; };
 		A5F2CB7817F6048B00652C75 /* BCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A50A773017F597B4004F8EA1 /* BCAppDelegate.m */; };
-		EEF067E617F5D44D00EFE3A5 /* Storyboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEF067E517F5D44D00EFE3A5 /* Storyboard_iPhone.storyboard */; };
-		EEF067E817F5D46300EFE3A5 /* Storyboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEF067E717F5D46300EFE3A5 /* Storyboard_iPad.storyboard */; };
+		EEF067E617F5D44D00EFE3A5 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEF067E517F5D44D00EFE3A5 /* Storyboard.storyboard */; };
 		EEF067EE17F5D5C300EFE3A5 /* BCMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF067ED17F5D5C300EFE3A5 /* BCMainViewController.m */; };
 		EEF067F117F5FEE600EFE3A5 /* BCConfigurationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF067F017F5FEE600EFE3A5 /* BCConfigurationViewController.m */; };
 /* End PBXBuildFile section */
@@ -59,8 +58,7 @@
 		A50A775717F5A11D004F8EA1 /* BCTone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCTone.m; sourceTree = "<group>"; };
 		A50A775917F5C4F2004F8EA1 /* BCChord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCChord.h; sourceTree = "<group>"; };
 		A50A775A17F5C4F2004F8EA1 /* BCChord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCChord.m; sourceTree = "<group>"; };
-		EEF067E517F5D44D00EFE3A5 /* Storyboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard_iPhone.storyboard; sourceTree = "<group>"; };
-		EEF067E717F5D46300EFE3A5 /* Storyboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard_iPad.storyboard; sourceTree = "<group>"; };
+		EEF067E517F5D44D00EFE3A5 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		EEF067EC17F5D5C300EFE3A5 /* BCMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BCMainViewController.h; path = BeaChord/BCMainViewController.h; sourceTree = SOURCE_ROOT; };
 		EEF067ED17F5D5C300EFE3A5 /* BCMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BCMainViewController.m; path = BeaChord/BCMainViewController.m; sourceTree = SOURCE_ROOT; };
 		EEF067EF17F5FEE600EFE3A5 /* BCConfigurationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BCConfigurationViewController.h; path = BeaChord/BCConfigurationViewController.h; sourceTree = SOURCE_ROOT; };
@@ -143,8 +141,7 @@
 				A50A772917F597B4004F8EA1 /* InfoPlist.strings */,
 				A50A772C17F597B4004F8EA1 /* main.m */,
 				A50A772E17F597B4004F8EA1 /* BeaChord-Prefix.pch */,
-				EEF067E517F5D44D00EFE3A5 /* Storyboard_iPhone.storyboard */,
-				EEF067E717F5D46300EFE3A5 /* Storyboard_iPad.storyboard */,
+				EEF067E517F5D44D00EFE3A5 /* Storyboard.storyboard */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -280,9 +277,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A50A772B17F597B4004F8EA1 /* InfoPlist.strings in Resources */,
-				EEF067E617F5D44D00EFE3A5 /* Storyboard_iPhone.storyboard in Resources */,
+				EEF067E617F5D44D00EFE3A5 /* Storyboard.storyboard in Resources */,
 				A50A773317F597B4004F8EA1 /* Images.xcassets in Resources */,
-				EEF067E817F5D46300EFE3A5 /* Storyboard_iPad.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
