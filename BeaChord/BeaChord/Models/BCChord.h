@@ -10,9 +10,12 @@
 
 @class BCTone;
 
+#define BC_arpeggioTime 0.3
+
 @interface BCChord : NSObject
 
 @property(nonatomic, strong) NSArray *tones;
+@property(nonatomic, assign, readonly) BOOL isPlaying;
 
 +(instancetype)chordWithTones:(NSArray *)tones;
 +(instancetype)majorChordFromTone:(BCTone *)tone;

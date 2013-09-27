@@ -13,16 +13,19 @@
 @implementation BCAppDelegate
 
 - (void)playToneDirectlyFromTheAppDelegate {
+    static BCTone *_tone;
     
-    BCTone *c = [BCTone toneFromNote:BCNoteC];
-    BCChord *chord = [BCChord majorChordFromTone:c];
+    if (!_tone) _tone = [BCTone toneFromNote:BCNoteC];
+    else _tone = [_tone toneByAddingSemitones:2];
+    BCChord *chord = [BCChord majorChordFromTone:_tone];
     [chord arpeggio];
     
     
-    double delayInSeconds = 10.0;
+    double delayInSeconds = (BC_arpeggioTime * 6);
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [chord stop];
+        [self playToneDirectlyFromTheAppDelegate];
     });
 }
 

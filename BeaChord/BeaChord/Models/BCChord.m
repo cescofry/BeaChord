@@ -9,8 +9,6 @@
 #import "BCChord.h"
 #import "BCTone.h"
 
-const float _arpeggioTime = 0.3;
-
 @interface BCChord ()
 
 @property(nonatomic, strong) BCTone *currentArpeggioTone;
@@ -45,9 +43,11 @@ const float _arpeggioTime = 0.3;
     [self.tones enumerateObjectsUsingBlock:^(BCTone *obj, NSUInteger idx, BOOL *stop) {
         [obj play];
     }];
+    _isPlaying = YES;
 }
 
 - (void)stop {
+    _isPlaying = NO;
     [self.tones enumerateObjectsUsingBlock:^(BCTone *obj, NSUInteger idx, BOOL *stop) {
         [obj stop];
     }];
@@ -63,13 +63,15 @@ const float _arpeggioTime = 0.3;
     }
     [self.currentArpeggioTone play];
     
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(_arpeggioTime * NSEC_PER_SEC));
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(BC_arpeggioTime * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        if (!self.isPlaying) return;
         [self nextArpeggio];
     });
 }
 
 - (void)arpeggio {
+    _isPlaying = YES;
     [self nextArpeggio];
 }
 
