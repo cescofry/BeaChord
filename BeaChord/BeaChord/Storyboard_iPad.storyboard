@@ -15,12 +15,47 @@
                     <view key="view" contentMode="scaleToFill" id="oHc-1U-ESv">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vc6-ch-DWk">
+                                <rect key="frame" x="726" y="994" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="sv5-3c-ARe" kind="modal" modalTransitionStyle="flipHorizontal" id="xQN-pR-cIJ"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="0.054901960780000002" green="0.1843137255" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="vc6-ch-DWk" secondAttribute="trailing" constant="20" symbolic="YES" id="HU7-QN-XGW"/>
+                            <constraint firstItem="bE7-GW-Hq3" firstAttribute="top" secondItem="vc6-ch-DWk" secondAttribute="bottom" constant="20" symbolic="YES" id="RhJ-Fb-Nj6"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ocD-HA-rfa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-102" y="-294"/>
+        </scene>
+        <!--Configuration View Controller-->
+        <scene sceneID="lQu-SJ-HQA">
+            <objects>
+                <viewController id="sv5-3c-ARe" customClass="BCConfigurationViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="X89-2g-02o"/>
+                        <viewControllerLayoutGuide type="bottom" id="Fkm-eb-v4f"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="W8g-Zu-UUd">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c5K-89-kw4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="738" y="-294"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

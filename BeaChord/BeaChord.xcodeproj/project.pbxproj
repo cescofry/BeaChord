@@ -25,6 +25,7 @@
 		EEF067E617F5D44D00EFE3A5 /* Storyboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEF067E517F5D44D00EFE3A5 /* Storyboard_iPhone.storyboard */; };
 		EEF067E817F5D46300EFE3A5 /* Storyboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEF067E717F5D46300EFE3A5 /* Storyboard_iPad.storyboard */; };
 		EEF067EE17F5D5C300EFE3A5 /* BCMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF067ED17F5D5C300EFE3A5 /* BCMainViewController.m */; };
+		EEF067F117F5FEE600EFE3A5 /* BCConfigurationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF067F017F5FEE600EFE3A5 /* BCConfigurationViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,8 @@
 		EEF067E717F5D46300EFE3A5 /* Storyboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard_iPad.storyboard; sourceTree = "<group>"; };
 		EEF067EC17F5D5C300EFE3A5 /* BCMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BCMainViewController.h; path = BeaChord/BCMainViewController.h; sourceTree = SOURCE_ROOT; };
 		EEF067ED17F5D5C300EFE3A5 /* BCMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BCMainViewController.m; path = BeaChord/BCMainViewController.m; sourceTree = SOURCE_ROOT; };
+		EEF067EF17F5FEE600EFE3A5 /* BCConfigurationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BCConfigurationViewController.h; path = BeaChord/BCConfigurationViewController.h; sourceTree = SOURCE_ROOT; };
+		EEF067F017F5FEE600EFE3A5 /* BCConfigurationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BCConfigurationViewController.m; path = BeaChord/BCConfigurationViewController.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +197,8 @@
 			children = (
 				EEF067EC17F5D5C300EFE3A5 /* BCMainViewController.h */,
 				EEF067ED17F5D5C300EFE3A5 /* BCMainViewController.m */,
+				EEF067EF17F5FEE600EFE3A5 /* BCConfigurationViewController.h */,
+				EEF067F017F5FEE600EFE3A5 /* BCConfigurationViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -300,6 +305,7 @@
 				A50A772D17F597B4004F8EA1 /* main.m in Sources */,
 				A50A775B17F5C4F2004F8EA1 /* BCChord.m in Sources */,
 				A50A775817F5A11D004F8EA1 /* BCTone.m in Sources */,
+				EEF067F117F5FEE600EFE3A5 /* BCConfigurationViewController.m in Sources */,
 				A50A773117F597B4004F8EA1 /* BCAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
