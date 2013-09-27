@@ -9,6 +9,9 @@
 #import "BCTone.h"
 #import <AudioToolbox/AudioToolbox.h>
 
+const float sqrSemitone = 1.059463094359;
+const float a4Hrz = 440.0;
+
 @interface BCTone ()
 
 @property (nonatomic, assign, readonly) AudioComponentInstance toneUnit;
@@ -107,45 +110,8 @@ void ToneInterruptionListener(void *inClientData, UInt32 inInterruptionState)
 
 - (double)frequency {
     if (_frequency < 1.0) {
-        switch (self.note) {
-            default:
-            case BCNoteA:
-                _frequency = 440.00;
-                break;
-            case BCNoteASharp:
-                _frequency = 466.16;
-                break;
-            case BCNoteB:
-                _frequency = 493.88;
-                break;
-            case BCNoteC:
-                _frequency = 523.25;
-                break;
-            case BCNoteCSharp:
-                _frequency = 554.37;
-                break;
-            case BCNoteD:
-                _frequency = 587.33;
-                break;
-            case BCNoteDSharp:
-                _frequency = 622.25;
-                break;
-            case BCNoteE:
-                _frequency = 659.26;
-                break;
-            case BCNoteF:
-                _frequency = 698.46;
-                break;
-            case BCNoteFSharp:
-                _frequency = 739.99;
-                break;
-            case BCNoteG:
-                _frequency = 783.99;
-                break;
-            case BCNoteGSharp:
-                _frequency = 830.61;
-                break;
-        }
+        
+        _frequency = a4Hrz * pow(sqrSemitone, self.note);
         
         float multiplier = 1.0;
         if (self.octave == 3) multiplier = 0.5;
@@ -154,9 +120,7 @@ void ToneInterruptionListener(void *inClientData, UInt32 inInterruptionState)
         if (self.octave == 7) multiplier = 8.0;
         if (self.octave == 8) multiplier = 16.0;
         
-        
         _frequency = (_frequency * multiplier);
-        NSLog(@"freq: %.2f [%.2f]", _frequency, multiplier);
         
     }
     return _frequency;
