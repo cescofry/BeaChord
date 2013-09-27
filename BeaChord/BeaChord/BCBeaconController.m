@@ -82,7 +82,7 @@ static NSString * const BCProxmityIdentifier = @"com.nscodernightlondon.beachord
 #pragma mark CBPeripheralManager delegate methods
 
 - (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral {
-    // Do nothing for the moment
+    NSLog(@"Did Update State for peripheral: %@", peripheral);
 }
 
 #pragma mark CLLocationManager delegate methods

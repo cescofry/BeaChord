@@ -32,14 +32,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.beaconController = [BCBeaconController new];
-	// Do any additional setup after loading the view.
+    [self.segmentedControl setAlpha:0.0]; // Initially hidden as player is the default
     
 }
 
 
 - (IBAction)switchModeAction:(id)sender {
-    BOOL isBroadcast = [(UISwitch *)sender isOn];
-    [self.segmentedControl setAlpha:(isBroadcast)? 1.0 : 0.0];
+    [self.segmentedControl setAlpha:([self isPlayer])? 0.0 : 1.0];
 }
 
 - (IBAction)changedSegment:(id)sender {
@@ -55,17 +54,17 @@
         self.startButton.tintColor = [UIColor blueColor];
         
     } else {
-        if ([self.modeSwitch isOn]) {
+        if ([self isPlayer]) {
+            [self.beaconController startListeningForBeacons];
+            self.isListening = YES;
+
+        } else {
             if ([self.segmentedControl selectedSegmentIndex] == 0) {
                 [self.beaconController startBroadcastingAsBeaconType:BCBeaconTypeChord];
             } else {
                 [self.beaconController startBroadcastingAsBeaconType:BCBeaconTypeColour];
             }
             self.isBroadcasting = YES;
-
-        } else {
-            [self.beaconController startListeningForBeacons];
-            self.isListening = YES;
         }
 
         self.startButton.titleLabel.text = @"Stop";
@@ -89,6 +88,10 @@
     } else {
         NSLog(@"Why did you try and deactivate an non-active service");
     }
+}
+
+- (BOOL)isPlayer {
+    return [self.modeSwitch isOn];
 }
 
 @end
