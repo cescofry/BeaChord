@@ -13,6 +13,8 @@
 @interface BCMainViewController ()
 
 @property (strong, nonatomic) BCBeaconController *beaconController;
+@property (assign, nonatomic) BOOL isBroadcasting;
+@property (assign, nonatomic) BOOL isListening;
 
 @property (nonatomic, strong) IBOutlet UISwitch *modeSwitch;
 @property (nonatomic, strong) IBOutlet UILabel *udidLabel;
@@ -45,8 +47,48 @@
     NSLog(@"Selected index %d", segment);
 }
 
-- (IBAction)startButtonAction:(id)sender {
-    NSLog(@"start");
+- (IBAction)startButtonAction:(UIButton *)sender {
+    if ([self isActive]) {
+        [self deActivate];
+
+        self.startButton.titleLabel.text = @"Start";
+        self.startButton.tintColor = [UIColor blueColor];
+        
+    } else {
+        if ([self.modeSwitch isOn]) {
+            if ([self.segmentedControl selectedSegmentIndex] == 0) {
+                [self.beaconController startBroadcastingAsBeaconType:BCBeaconTypeChord];
+            } else {
+                [self.beaconController startBroadcastingAsBeaconType:BCBeaconTypeColour];
+            }
+            self.isBroadcasting = YES;
+
+        } else {
+            [self.beaconController startListeningForBeacons];
+            self.isListening = YES;
+        }
+
+        self.startButton.titleLabel.text = @"Stop";
+        self.startButton.tintColor = [UIColor redColor];
+    }
+}
+
+#pragma mark - Private methods
+
+- (BOOL)isActive {
+    return (self.isBroadcasting || self.isListening);
+}
+
+- (void)deActivate {
+    if (self.isBroadcasting) {
+        [self.beaconController stopBroadcastingAsBeacon];
+        self.isBroadcasting = !self.isBroadcasting;
+    } else if (self.isListening) {
+        [self.beaconController stopListeningForBeacons];
+        self.isListening = !self.isListening;
+    } else {
+        NSLog(@"Why did you try and deactivate an non-active service");
+    }
 }
 
 @end
