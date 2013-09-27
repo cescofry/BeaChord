@@ -78,18 +78,22 @@ void ToneInterruptionListener(void *inClientData, UInt32 inInterruptionState)
 + (instancetype)toneFromNote:(BCNote)note {
     BCTone *tone = [[BCTone alloc] init];
     tone.note = note;
+    tone.octave = 4;
     
     return tone;
 }
 
 - (instancetype)toneByAddingSemitones:(NSInteger)semitones {
     
+    
     NSInteger nextNote = ((self.note + semitones) % (BCNoteGSharp + 1));
-    /*
-    NSInteger sum = (self.note + semitones);
-    BCNote nextNote = (sum <= BCNoteGSharp)? sum : ((sum - 1) % BCNoteG);
-     */
-    return [BCTone toneFromNote:nextNote];
+    BOOL shiftOctave = (nextNote <= self.note && semitones > 0);
+
+    BCTone *nextTone = [BCTone toneFromNote:nextNote];
+    nextTone.octave = self.octave;
+    if (shiftOctave) nextTone.octave++;
+    
+    return nextTone;
 }
 
 - (id)init
@@ -142,6 +146,18 @@ void ToneInterruptionListener(void *inClientData, UInt32 inInterruptionState)
                 _frequency = 830.61;
                 break;
         }
+        
+        float multiplier = 1.0;
+        if (self.octave == 3) multiplier = 0.5;
+        if (self.octave == 5) multiplier = 2.0;
+        if (self.octave == 6) multiplier = 4.0;
+        if (self.octave == 7) multiplier = 8.0;
+        if (self.octave == 8) multiplier = 16.0;
+        
+        
+        _frequency = (_frequency * multiplier);
+        NSLog(@"freq: %.2f [%.2f]", _frequency, multiplier);
+        
     }
     return _frequency;
 }

@@ -9,9 +9,13 @@
 #import "BCChord.h"
 #import "BCTone.h"
 
+const float _arpeggioTime =  0.3;
+
 @interface BCChord ()
 
 @property(nonatomic, strong) BCTone *currentArpeggioTone;
+@property (nonatomic, strong) NSEnumerator *arpeggioEnumerator;
+@property(nonatomic, assign) BOOL isAscending;
 
 @end
 
@@ -20,6 +24,7 @@
 +(instancetype)chordWithTones:(NSArray *)tones {
     BCChord *chord = [[BCChord alloc] init];
     chord.tones = tones;
+    chord.time = _arpeggioTime;
     return chord;
 }
 
@@ -48,22 +53,37 @@
 
 - (void)stop {
     _isPlaying = NO;
+    _arpeggioEnumerator = nil;
     [self.tones enumerateObjectsUsingBlock:^(BCTone *obj, NSUInteger idx, BOOL *stop) {
         [obj stop];
     }];
 }
 
-- (void)nextArpeggio {
-    if (!self.currentArpeggioTone) self.currentArpeggioTone = [self.tones firstObject];
-    else {
-        [self.currentArpeggioTone stop];
-        NSInteger index = [self.tones indexOfObject:self.currentArpeggioTone];
-        if (++index >= self.tones.count) index = 0;
-        self.currentArpeggioTone = [self.tones objectAtIndex:index];
+- (NSEnumerator *)arpeggioEnumerator {
+    if (!_arpeggioEnumerator) {
+        _arpeggioEnumerator = [self.tones objectEnumerator];
+        self.isAscending = YES;
     }
-    [self.currentArpeggioTone play];
+    return _arpeggioEnumerator;
+}
+
+- (void)nextArpeggio {
+    if (self.currentArpeggioTone) [self.currentArpeggioTone stop];
     
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(BC_arpeggioTime * NSEC_PER_SEC));
+    self.currentArpeggioTone = [self.arpeggioEnumerator nextObject];
+    if (!self.currentArpeggioTone) {
+        self.isAscending = !self.isAscending;
+        self.arpeggioEnumerator = (self.isAscending)? [self.tones objectEnumerator] : [self.tones reverseObjectEnumerator];
+        [self.arpeggioEnumerator nextObject]; // discard first note as already playing
+        self.currentArpeggioTone = [self.arpeggioEnumerator nextObject];
+    }
+    
+    [self.currentArpeggioTone play];
+    NSLog(@"tone: %d", self.currentArpeggioTone.note);
+
+    
+    
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.time * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         if (!self.isPlaying) return;
         [self nextArpeggio];
@@ -72,6 +92,7 @@
 
 - (void)arpeggio {
     _isPlaying = YES;
+    self.isAscending = YES;
     [self nextArpeggio];
 }
 

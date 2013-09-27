@@ -25,6 +25,7 @@ typedef enum {
 
 @interface BCTone : NSObject
 @property (nonatomic, assign) BCNote note;
+@property (nonatomic, assign) NSInteger octave;
 
 + (instancetype)toneFromNote:(BCNote)note;
 - (instancetype)toneByAddingSemitones:(NSInteger)semitones;
