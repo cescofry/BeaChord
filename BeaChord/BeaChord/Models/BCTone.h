@@ -19,10 +19,9 @@ typedef enum {
 } BCNote;
 
 @interface BCTone : NSObject
-
 @property (nonatomic, assign) BCNote note;
-@property (nonatomic, assign, readonly) float frequency;
 
 + (instancetype)toneFromNote:(BCNote)note;
-
+- (void)play;
+- (void)stop;
 @end

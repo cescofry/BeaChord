@@ -12,7 +12,5 @@
 
 @interface BCToneGenerator : NSObject
 
-- (void)playTone:(BCTone *)tone;
-- (void)stop;
 
 @end
