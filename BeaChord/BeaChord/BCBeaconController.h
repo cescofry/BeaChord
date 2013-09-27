@@ -8,6 +8,7 @@
 
 @import Foundation;
 @import CoreLocation;
+@import CoreBluetooth;
 
 typedef NS_ENUM(UInt16, BCBeaconType) {
     BCBeaconTypeChord,
@@ -15,7 +16,7 @@ typedef NS_ENUM(UInt16, BCBeaconType) {
     BCBeaconTypeRythm
 };
 
-@interface BCBeaconController : NSObject <CLLocationManagerDelegate>
+@interface BCBeaconController : NSObject <CLLocationManagerDelegate, CBPeripheralManagerDelegate>
 
 @property (nonatomic, copy, readonly) NSArray *beacons;
 

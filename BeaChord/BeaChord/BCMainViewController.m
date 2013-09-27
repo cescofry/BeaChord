@@ -8,7 +8,11 @@
 
 #import "BCMainViewController.h"
 
+#import "BCBeaconController.h"
+
 @interface BCMainViewController ()
+
+@property (strong, nonatomic) BCBeaconController *beaconController;
 
 @property (nonatomic, strong) IBOutlet UISwitch *modeSwitch;
 @property (nonatomic, strong) IBOutlet UILabel *udidLabel;
@@ -25,9 +29,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.beaconController = [BCBeaconController new];
 	// Do any additional setup after loading the view.
-    
-    
     
 }
 
