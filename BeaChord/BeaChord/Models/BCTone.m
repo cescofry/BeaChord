@@ -39,20 +39,16 @@ OSStatus RenderTone(
 	double theta = [tone theta];
 	double theta_increment = 2.0 * M_PI * [tone frequency] / [tone sampleRate];
     
-    NSLog(@"inc: %f", theta_increment);
-    
 	// This is a mono tone generator so we only need the first buffer
     
-#warning //TODO: work with channel for stereo.
-    
-    
-	const int channel = 0;
-	Float32 *buffer = (Float32 *)ioData->mBuffers[channel].mData;
+	Float32 *bufferL = (Float32 *)ioData->mBuffers[0].mData;
+    //Float32 *bufferR = (Float32 *)ioData->mBuffers[1].mData;
 	
 	// Generate the samples
 	for (UInt32 frame = 0; frame < inNumberFrames; frame++)
 	{
-		buffer[frame] = sin(theta) * amplitude;
+		bufferL[frame] = sin(theta) * amplitude;
+        //bufferR[frame] = sin(theta) * amplitude;
 		
 		theta += theta_increment;
 		if (theta > 2.0 * M_PI)
@@ -86,6 +82,16 @@ void ToneInterruptionListener(void *inClientData, UInt32 inInterruptionState)
     return tone;
 }
 
+- (instancetype)toneByAddingSemitones:(NSInteger)semitones {
+    
+    NSInteger nextNote = ((self.note + semitones) % (BCNoteGSharp + 1));
+    /*
+    NSInteger sum = (self.note + semitones);
+    BCNote nextNote = (sum <= BCNoteGSharp)? sum : ((sum - 1) % BCNoteG);
+     */
+    return [BCTone toneFromNote:nextNote];
+}
+
 - (id)init
 {
     self = [super init];
@@ -102,14 +108,23 @@ void ToneInterruptionListener(void *inClientData, UInt32 inInterruptionState)
             case BCNoteA:
                 _frequency = 440.00;
                 break;
+            case BCNoteASharp:
+                _frequency = 466.16;
+                break;
             case BCNoteB:
                 _frequency = 493.88;
                 break;
             case BCNoteC:
                 _frequency = 523.25;
                 break;
+            case BCNoteCSharp:
+                _frequency = 554.37;
+                break;
             case BCNoteD:
                 _frequency = 587.33;
+                break;
+            case BCNoteDSharp:
+                _frequency = 622.25;
                 break;
             case BCNoteE:
                 _frequency = 659.26;
@@ -117,8 +132,14 @@ void ToneInterruptionListener(void *inClientData, UInt32 inInterruptionState)
             case BCNoteF:
                 _frequency = 698.46;
                 break;
+            case BCNoteFSharp:
+                _frequency = 739.99;
+                break;
             case BCNoteG:
                 _frequency = 783.99;
+                break;
+            case BCNoteGSharp:
+                _frequency = 830.61;
                 break;
         }
     }

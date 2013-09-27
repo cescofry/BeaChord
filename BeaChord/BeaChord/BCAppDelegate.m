@@ -13,11 +13,10 @@
 @implementation BCAppDelegate
 
 - (void)playToneDirectlyFromTheAppDelegate {
+    
     BCTone *c = [BCTone toneFromNote:BCNoteC];
-    BCTone *e = [BCTone toneFromNote:BCNoteE];
-    BCTone *g = [BCTone toneFromNote:BCNoteG];
-    BCChord *chord = [BCChord chordWithTones:@[c, e, g]];
-    [chord play];
+    BCChord *chord = [BCChord majorChordFromTone:c];
+    [chord arpeggio];
     
     
     double delayInSeconds = 10.0;
@@ -28,7 +27,7 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [self playToneDirectlyFromTheAppDelegate];
+    //[self playToneDirectlyFromTheAppDelegate];
     
     return YES;
 }

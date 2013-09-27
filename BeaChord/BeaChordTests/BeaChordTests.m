@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "BCToneGenerator.h"
+#import "BCTone.h"
 
 @interface BeaChordTests : XCTestCase
 
@@ -27,17 +27,20 @@
     [super tearDown];
 }
 
-- (void)testExample
-{
-    BCToneGenerator *toneG = [[BCToneGenerator alloc] init];
-    BCTone *la = [BCTone toneFromNote:BCNoteA];
-    [toneG playTone:la];
+- (void)testNodeAddingSemitones {
+    BCTone *aTone = [BCTone toneFromNote:BCNoteA];
     
-    double delayInSeconds = 2.0;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [toneG stop];
-    });
+    BCTone *aSharpTone = [aTone toneByAddingSemitones:1];
+    
+    NSAssert((aSharpTone.note == BCNoteA), @"This should be a a# is actually %d", aSharpTone.note);
+
+    
+    BCTone *fTone = [BCTone toneFromNote:BCNoteF];
+    
+    aSharpTone = [fTone toneByAddingSemitones:5];
+    
+    NSAssert((aSharpTone.note == BCNoteA), @"This should be a a# is actually %d", aSharpTone.note);
+    
 }
 
 @end

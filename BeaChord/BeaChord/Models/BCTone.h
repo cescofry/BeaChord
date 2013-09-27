@@ -10,18 +10,24 @@
 
 typedef enum {
     BCNoteA,
+    BCNoteASharp,
     BCNoteB,
     BCNoteC,
+    BCNoteCSharp,
     BCNoteD,
+    BCNoteDSharp,
     BCNoteE,
     BCNoteF,
-    BCNoteG
+    BCNoteFSharp,
+    BCNoteG,
+    BCNoteGSharp
 } BCNote;
 
 @interface BCTone : NSObject
 @property (nonatomic, assign) BCNote note;
 
 + (instancetype)toneFromNote:(BCNote)note;
+- (instancetype)toneByAddingSemitones:(NSInteger)semitones;
 - (void)play;
 - (void)stop;
 @end

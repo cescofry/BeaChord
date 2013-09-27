@@ -22,6 +22,7 @@
 		A50A775517F59E40004F8EA1 /* BCToneGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = A50A775417F59E40004F8EA1 /* BCToneGenerator.m */; };
 		A50A775817F5A11D004F8EA1 /* BCTone.m in Sources */ = {isa = PBXBuildFile; fileRef = A50A775717F5A11D004F8EA1 /* BCTone.m */; };
 		A50A775B17F5C4F2004F8EA1 /* BCChord.m in Sources */ = {isa = PBXBuildFile; fileRef = A50A775A17F5C4F2004F8EA1 /* BCChord.m */; };
+		A5F2CB7817F6048B00652C75 /* BCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A50A773017F597B4004F8EA1 /* BCAppDelegate.m */; };
 		EEF067E617F5D44D00EFE3A5 /* Storyboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEF067E517F5D44D00EFE3A5 /* Storyboard_iPhone.storyboard */; };
 		EEF067E817F5D46300EFE3A5 /* Storyboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEF067E717F5D46300EFE3A5 /* Storyboard_iPad.storyboard */; };
 		EEF067EE17F5D5C300EFE3A5 /* BCMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF067ED17F5D5C300EFE3A5 /* BCMainViewController.m */; };
@@ -314,6 +315,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A50A774617F597B4004F8EA1 /* BeaChordTests.m in Sources */,
+				A5F2CB7817F6048B00652C75 /* BCAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

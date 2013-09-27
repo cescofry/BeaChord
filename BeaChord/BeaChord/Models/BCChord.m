@@ -14,7 +14,6 @@ const float _arpeggioTime = 0.3;
 @interface BCChord ()
 
 @property(nonatomic, strong) BCTone *currentArpeggioTone;
-@property(nonatomic, assign) BOOL isArpeggio;
 
 @end
 
@@ -27,13 +26,19 @@ const float _arpeggioTime = 0.3;
 }
 
 +(instancetype)majorChordFromTone:(BCTone *)tone {
-    NSAssert(NO, @"Not impleemnted yet");
-    return nil;
+    // Major chords are tone + 4 sm and + 7 sm
+    BCTone *thirdMajor = [tone toneByAddingSemitones:4];
+    BCTone *fifth = [tone toneByAddingSemitones:7];
+    
+    return [self chordWithTones:@[tone, thirdMajor, fifth]];
 }
 
 +(instancetype)minorChordFromTone:(BCTone *)tone {
-    NSAssert(NO, @"Not impleemnted yet");
-    return nil;
+    // Major chords are tone + 3 sm and + 7 sm
+    BCTone *thirdMinor = [tone toneByAddingSemitones:3];
+    BCTone *fifth = [tone toneByAddingSemitones:7];
+    
+    return [self chordWithTones:@[tone, thirdMinor, fifth]];
 }
 
 - (void)play {
@@ -43,7 +48,6 @@ const float _arpeggioTime = 0.3;
 }
 
 - (void)stop {
-    self.isArpeggio = NO;
     [self.tones enumerateObjectsUsingBlock:^(BCTone *obj, NSUInteger idx, BOOL *stop) {
         [obj stop];
     }];
@@ -66,7 +70,6 @@ const float _arpeggioTime = 0.3;
 }
 
 - (void)arpeggio {
-    self.isArpeggio = YES;
     [self nextArpeggio];
 }
 
