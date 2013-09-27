@@ -7,8 +7,21 @@
 //
 
 #import "BCAppDelegate.h"
+#import "BCToneGenerator.h"
 
 @implementation BCAppDelegate
+
+- (void)playToneDirectlyFromTheAppDelegate {
+    BCToneGenerator *toneG = [[BCToneGenerator alloc] init];
+    BCTone *la = [BCTone toneFromNote:BCNoteA];
+    [toneG playTone:la];
+    
+    double delayInSeconds = 2.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [toneG stop];
+    });
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -16,6 +29,9 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    [self playToneDirectlyFromTheAppDelegate];
+    
     return YES;
 }
 

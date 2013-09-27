@@ -7,19 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BCTone.h"
 
-typedef enum {
-    BCNoteA,
-    BCNoteB,
-    BCNoteC,
-    BCNoteD,
-    BCNoteE,
-    BCNoteF,
-    BCNoteG
-} BCNote;
 
 @interface BCToneGenerator : NSObject
 
-- (void)playNote:(BCNote)note;
+- (void)playTone:(BCTone *)tone;
+- (void)stop;
 
 @end
