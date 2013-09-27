@@ -1,0 +1,50 @@
+# Mac OS X
+*.DS_Store
+
+# Xcode
+*.xcuserstate
+project.xcworkspace/
+xcuserdata/
+
+# Generated files
+# .a is not ignored, so that I can use prebuilt libraries in projects.
+*.o
+*.pyc
+*.hi
+
+# Haskell
+dist
+cabal-dev
+*.o
+*.hi
+*.chi
+*.chs.h
+.virthualenv
+
+# Ruby
+*.gem
+*.rbc
+.bundle
+.config
+coverage
+InstalledFiles
+lib/bundler/man
+pkg
+rdoc
+spec/reports
+test/tmp
+test/version_tmp
+tmp
+
+#Python
+*.pyc
+MANIFEST
+dist/
+build/
+
+# Backup files
+*~.nib
+\#*#
+.#*
+*.swp
+*.un~
