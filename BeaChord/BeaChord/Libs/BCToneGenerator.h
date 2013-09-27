@@ -8,6 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum {
+    BCNoteA,
+    BCNoteB,
+    BCNoteC,
+    BCNoteD,
+    BCNoteE,
+    BCNoteF,
+    BCNoteG
+} BCNote;
+
 @interface BCToneGenerator : NSObject
+
+- (void)playNote:(BCNote)note;
 
 @end

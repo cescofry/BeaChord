@@ -20,6 +20,7 @@
 		A50A774417F597B4004F8EA1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A50A774217F597B4004F8EA1 /* InfoPlist.strings */; };
 		A50A774617F597B4004F8EA1 /* BeaChordTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A50A774517F597B4004F8EA1 /* BeaChordTests.m */; };
 		A50A775517F59E40004F8EA1 /* BCToneGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = A50A775417F59E40004F8EA1 /* BCToneGenerator.m */; };
+		A50A775817F5A11D004F8EA1 /* BCTone.m in Sources */ = {isa = PBXBuildFile; fileRef = A50A775717F5A11D004F8EA1 /* BCTone.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		A50A774517F597B4004F8EA1 /* BeaChordTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BeaChordTests.m; sourceTree = "<group>"; };
 		A50A775317F59E40004F8EA1 /* BCToneGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCToneGenerator.h; sourceTree = "<group>"; };
 		A50A775417F59E40004F8EA1 /* BCToneGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCToneGenerator.m; sourceTree = "<group>"; };
+		A50A775617F5A11D004F8EA1 /* BCTone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCTone.h; sourceTree = "<group>"; };
+		A50A775717F5A11D004F8EA1 /* BCTone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCTone.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +173,8 @@
 		A50A775117F59E28004F8EA1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A50A775617F5A11D004F8EA1 /* BCTone.h */,
+				A50A775717F5A11D004F8EA1 /* BCTone.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -279,6 +284,7 @@
 			files = (
 				A50A775517F59E40004F8EA1 /* BCToneGenerator.m in Sources */,
 				A50A772D17F597B4004F8EA1 /* main.m in Sources */,
+				A50A775817F5A11D004F8EA1 /* BCTone.m in Sources */,
 				A50A773117F597B4004F8EA1 /* BCAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

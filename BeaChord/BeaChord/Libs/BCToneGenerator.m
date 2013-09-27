@@ -7,7 +7,23 @@
 //
 
 #import "BCToneGenerator.h"
+#import <AudioToolbox/AudioToolbox.h>
+
+@interface BCToneGenerator ()
+
+
+
+@end
+
 
 @implementation BCToneGenerator
+
+
+
+- (void)playNote:(BCNote)note {
+    
+    
+    
+}
 
 @end
