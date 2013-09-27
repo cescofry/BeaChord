@@ -21,6 +21,7 @@
 		A50A774617F597B4004F8EA1 /* BeaChordTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A50A774517F597B4004F8EA1 /* BeaChordTests.m */; };
 		A50A775517F59E40004F8EA1 /* BCToneGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = A50A775417F59E40004F8EA1 /* BCToneGenerator.m */; };
 		A50A775817F5A11D004F8EA1 /* BCTone.m in Sources */ = {isa = PBXBuildFile; fileRef = A50A775717F5A11D004F8EA1 /* BCTone.m */; };
+		A50A775B17F5C4F2004F8EA1 /* BCChord.m in Sources */ = {isa = PBXBuildFile; fileRef = A50A775A17F5C4F2004F8EA1 /* BCChord.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,8 @@
 		A50A775417F59E40004F8EA1 /* BCToneGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCToneGenerator.m; sourceTree = "<group>"; };
 		A50A775617F5A11D004F8EA1 /* BCTone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCTone.h; sourceTree = "<group>"; };
 		A50A775717F5A11D004F8EA1 /* BCTone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCTone.m; sourceTree = "<group>"; };
+		A50A775917F5C4F2004F8EA1 /* BCChord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCChord.h; sourceTree = "<group>"; };
+		A50A775A17F5C4F2004F8EA1 /* BCChord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCChord.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +178,8 @@
 			children = (
 				A50A775617F5A11D004F8EA1 /* BCTone.h */,
 				A50A775717F5A11D004F8EA1 /* BCTone.m */,
+				A50A775917F5C4F2004F8EA1 /* BCChord.h */,
+				A50A775A17F5C4F2004F8EA1 /* BCChord.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -284,6 +289,7 @@
 			files = (
 				A50A775517F59E40004F8EA1 /* BCToneGenerator.m in Sources */,
 				A50A772D17F597B4004F8EA1 /* main.m in Sources */,
+				A50A775B17F5C4F2004F8EA1 /* BCChord.m in Sources */,
 				A50A775817F5A11D004F8EA1 /* BCTone.m in Sources */,
 				A50A773117F597B4004F8EA1 /* BCAppDelegate.m in Sources */,
 			);
