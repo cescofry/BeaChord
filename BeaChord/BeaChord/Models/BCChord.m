@@ -93,7 +93,7 @@
         if (!self.isPlaying) return;
         [self nextArpeggio];
     }];
-    NSLog(@"tone: %d", self.currentArpeggioTone.note);
+    NSLog(@"tone: %ld", self.currentArpeggioTone.note);
 }
 
 - (void)arpeggio {

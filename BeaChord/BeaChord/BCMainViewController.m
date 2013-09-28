@@ -43,7 +43,7 @@
 
 - (IBAction)changedSegment:(id)sender {
     NSInteger segment = [(UISegmentedControl *)sender selectedSegmentIndex];
-    NSLog(@"Selected index %d", segment);
+    NSLog(@"Selected index %ld", (long)segment);
 }
 
 - (IBAction)startButtonAction:(UIButton *)sender {
