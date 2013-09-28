@@ -7,8 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@class BCTone;
+#import "BCTone.h"
 
 @interface BCChord : NSObject
 
@@ -22,5 +21,6 @@
 - (void)play;
 - (void)stop;
 - (void)arpeggio;
+- (void)playMelody;
 
 @end

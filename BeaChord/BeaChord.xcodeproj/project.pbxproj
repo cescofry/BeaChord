@@ -23,6 +23,7 @@
 		A50A775B17F5C4F2004F8EA1 /* BCChord.m in Sources */ = {isa = PBXBuildFile; fileRef = A50A775A17F5C4F2004F8EA1 /* BCChord.m */; };
 		A5F2CB7817F6048B00652C75 /* BCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A50A773017F597B4004F8EA1 /* BCAppDelegate.m */; };
 		A5F2CB8117F62D3D00652C75 /* BCIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F2CB7F17F62D3D00652C75 /* BCIndicatorView.m */; };
+		A5F2CB8517F6C2A000652C75 /* BCMelodyPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F2CB8417F6C2A000652C75 /* BCMelodyPlayer.m */; };
 		EEF067E617F5D44D00EFE3A5 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEF067E517F5D44D00EFE3A5 /* Storyboard.storyboard */; };
 		EEF067EE17F5D5C300EFE3A5 /* BCMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF067ED17F5D5C300EFE3A5 /* BCMainViewController.m */; };
 		EEF067F117F5FEE600EFE3A5 /* BCConfigurationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF067F017F5FEE600EFE3A5 /* BCConfigurationViewController.m */; };
@@ -63,6 +64,8 @@
 		A5F2CB7F17F62D3D00652C75 /* BCIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCIndicatorView.m; sourceTree = "<group>"; };
 		A5F2CB8017F62D3D00652C75 /* BCIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCIndicatorView.h; sourceTree = "<group>"; };
 		A5F2CB8217F6814400652C75 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
+		A5F2CB8317F6C2A000652C75 /* BCMelodyPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCMelodyPlayer.h; sourceTree = "<group>"; };
+		A5F2CB8417F6C2A000652C75 /* BCMelodyPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCMelodyPlayer.m; sourceTree = "<group>"; };
 		EEF067E517F5D44D00EFE3A5 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		EEF067EC17F5D5C300EFE3A5 /* BCMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BCMainViewController.h; path = BeaChord/BCMainViewController.h; sourceTree = SOURCE_ROOT; };
 		EEF067ED17F5D5C300EFE3A5 /* BCMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BCMainViewController.m; path = BeaChord/BCMainViewController.m; sourceTree = SOURCE_ROOT; };
@@ -175,6 +178,8 @@
 		A50A774F17F59E28004F8EA1 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				A5F2CB8317F6C2A000652C75 /* BCMelodyPlayer.h */,
+				A5F2CB8417F6C2A000652C75 /* BCMelodyPlayer.m */,
 			);
 			path = Libs;
 			sourceTree = "<group>";
@@ -311,6 +316,7 @@
 			files = (
 				EEF067F417F61D8100EFE3A5 /* BCBeaconController.m in Sources */,
 				A5F2CB8117F62D3D00652C75 /* BCIndicatorView.m in Sources */,
+				A5F2CB8517F6C2A000652C75 /* BCMelodyPlayer.m in Sources */,
 				EEF067EE17F5D5C300EFE3A5 /* BCMainViewController.m in Sources */,
 				A50A772D17F597B4004F8EA1 /* main.m in Sources */,
 				A50A775B17F5C4F2004F8EA1 /* BCChord.m in Sources */,
