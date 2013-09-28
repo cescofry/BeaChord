@@ -14,6 +14,7 @@ const int _periodLength = 8;
 @interface BCMelodyPlayer ()
 
 @property (nonatomic, strong) BCChord *currentMelody;
+@property (nonatomic, strong) BCChord *nextMelody;
 
 @end
 
@@ -93,7 +94,7 @@ const int _periodLength = 8;
     return melody;
 }
 
-- (void)synchMelodyAnPlay:(BCChord *)melody {
+- (void)synchMelodyAnPlay:(BCChord *)melody{
     
     CFAbsoluteTime currentTime = CFAbsoluteTimeGetCurrent();
     double nextRound = (NSInteger)currentTime % _periodLength;
@@ -101,10 +102,13 @@ const int _periodLength = 8;
     
     NSLog(@"next: %.2f [%f]", nextRound, currentTime);
     
-    self.currentMelody = melody;
+    self.nextMelody = melody;
 
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(nextRound * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [self.currentMelody stop];
+        self.currentMelody = self.nextMelody;
+        self.nextMelody = nil;
         [self.currentMelody playMelody];
     });
     

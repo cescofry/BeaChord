@@ -101,6 +101,7 @@
 - (void)beaconController:(BCBeaconController *)beaconController didChangeBeacons:(NSArray *)beacons {
     if ([beacons count] == 0) {
         [self.currentChord stop];
+        return;
     }
 
     // Play Chord based on beacons
@@ -111,7 +112,9 @@
         BCChord *chord = [self chordFromBeacons:beacons];
         if ([self.currentChord isEqual:chord]) return;
         
-        [self.currentChord stop];
+        NSLog(@"\ni - %@\no - %@", self.currentChord.description, chord.description);
+        
+        if (!self.isInMelodyMode)[self.currentChord stop];
         self.currentChord = chord;
     }
     
@@ -188,7 +191,7 @@
     
     BCChord *chord;
     if (self.isInMelodyMode) {
-        chord = [self.melodyPlayer melodyOfType:sumProximity];
+        chord = [self.melodyPlayer melodyOfType:(NSInteger)(sumProximity / beacons.count)];
     }
     else {
         BCTone *tone = [BCTone toneFromNote:note];

@@ -115,5 +115,9 @@
     [self nextTone];
 }
 
+- (NSString *)description {
+    return [[self.tones valueForKey:@"note"] description];
+}
+
 
 @end
