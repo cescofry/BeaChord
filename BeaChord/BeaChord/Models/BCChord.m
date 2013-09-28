@@ -96,7 +96,7 @@
         if (!self.isPlaying) return;
         [self nextTone];
     }];
-    NSLog(@"tone: %ld", self.currentArpeggioTone.note);
+    NSLog(@"tone: %d", self.currentArpeggioTone.note);
 }
 
 - (void)arpeggio {
