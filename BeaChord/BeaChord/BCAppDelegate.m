@@ -7,42 +7,14 @@
 //
 
 #import "BCAppDelegate.h"
-#import "BCTone.h"
-#import "BCChord.h"
+#import "BCMelodyPlayer.h"
 
 @implementation BCAppDelegate
 
 - (void)playToneDirectlyFromTheAppDelegate {
 
-    BCTone *cTone = [BCTone toneFromNote:BCNoteC];
-    [cTone setDuration:1];
-    [cTone setPeriod:1];
-    
-    BCTone *eTone = [BCTone toneFromNote:BCNoteE];
-    [eTone setDuration:0.5];
-    [eTone setPeriod:0.5];
-    
-    BCTone *gTone = [BCTone toneFromNote:BCNoteG];
-    [gTone setDuration:0.5];
-    [gTone setPeriod:0.5];
-    
-    BCTone *fTone = [BCTone toneFromNote:BCNoteF];
-    [fTone setDuration:1];
-    [fTone setPeriod:1];
-    
-    BCTone *aTone = [BCTone toneFromNote:BCNoteA];
-    aTone.octave++;
-    [aTone setDuration:0.5];
-    [aTone setPeriod:0.5];
-    
-    BCTone *cToneUp = [BCTone toneFromNote:BCNoteC];
-    cToneUp.octave++;
-    [cToneUp setDuration:0.5];
-    [cToneUp setPeriod:0.5];
-    
-    BCChord *chord = [BCChord chordWithTones:@[cTone, eTone, gTone, fTone, aTone, cToneUp]];
-    
-    [chord arpeggio];
+    BCMelodyPlayer *player = [BCMelodyPlayer sharedInstance];
+    [player synchMelodyAnPlay:BCMelodyTypeMain];
     
 }
 

@@ -13,7 +13,7 @@ const int _periodLength = 4;
 
 @interface BCMelodyPlayer ()
 
-@property (nonatomic, assign) BCChord *currentMelody;
+@property (nonatomic, strong) BCChord *currentMelody;
 
 @end
 
@@ -59,21 +59,20 @@ const int _periodLength = 4;
             break;
         case BCMelodyTypeHigh:
         {
+            
+            BCTone *muteTone = [BCTone muteToneOfDuration:0.5];
+            
             BCTone *cTone = [BCTone toneFromNote:BCNoteC];
             cTone.octave--;
             [cTone setDuration:0.125];
             [cTone setPeriod:0.125];
             
-            BCTone *fTone = [BCTone toneFromNote:BCNoteF];
-            fTone.octave--;
-            [fTone setDuration:0.125];
-            [fTone setPeriod:0.125];
-            
-            melody = [BCChord chordWithTones:@[cTone, fTone]];
+            melody = [BCChord chordWithTones:@[muteTone, cTone, cTone]];
         }
             break;
         case BCMelodyTypeBase:
         {
+            
             BCTone *cTone = [BCTone toneFromNote:BCNoteC];
             cTone.octave--;
             [cTone setDuration:2];

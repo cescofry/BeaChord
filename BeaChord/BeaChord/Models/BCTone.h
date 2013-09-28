@@ -23,6 +23,8 @@ typedef NS_ENUM(NSInteger, BCNote) {
     BCNoteGSharp
 };
 
+static NSInteger const BCNoteMute = (BCNoteGSharp + 1);
+
 @interface BCTone : NSObject
 @property(nonatomic, assign) BCNote note;
 @property(nonatomic, assign) NSInteger octave;
@@ -30,6 +32,7 @@ typedef NS_ENUM(NSInteger, BCNote) {
 @property(nonatomic, assign) float period;   // lenght of the note (>= duration)
 
 + (instancetype)toneFromNote:(BCNote)note;
++ (instancetype)muteToneOfDuration:(float)duration;
 - (instancetype)toneByAddingSemitones:(NSInteger)semitones;
 - (void)playCompleted:(voidBlock)completed;
 - (void)stop;

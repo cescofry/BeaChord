@@ -89,6 +89,18 @@ void ToneInterruptionListener(void *inClientData, UInt32 inInterruptionState)
     return tone;
 }
 
++ (instancetype)muteToneOfDuration:(float)duration {
+    BCTone *tone = [[BCTone alloc] init];
+    tone.note = BCNoteMute;
+    tone.octave = 0;
+    tone.period = defaultTime;
+    tone.duration = defaultTime;
+    
+    return tone;
+}
+
+
+
 - (instancetype)toneByAddingSemitones:(NSInteger)semitones {
     
     
@@ -166,32 +178,34 @@ void ToneInterruptionListener(void *inClientData, UInt32 inInterruptionState)
 
 - (void)playCompleted:(voidBlock)completed {
     
-    // Stop changing parameters on the unit
-    OSErr err = AudioUnitInitialize(self.toneUnit);
-    NSAssert1(err == noErr, @"Error initializing unit: %d", err);
+    if (self.note != BCNoteMute) {
+        // Stop changing parameters on the unit
+        OSErr err = AudioUnitInitialize(self.toneUnit);
+        NSAssert1(err == noErr, @"Error initializing unit: %d", err);
+        
+        // Start playback
+        err = AudioOutputUnitStart(self.toneUnit);
+        NSAssert1(err == noErr, @"Error starting unit: %d", err);
+    }
     
-    // Start playback
-    err = AudioOutputUnitStart(self.toneUnit);
-    NSAssert1(err == noErr, @"Error starting unit: %d", err);
-    
-    BOOL sameStop = (self.period == self.duration);
+    if (self.period == self.duration) self.period -= 0.05;
     
     dispatch_time_t playTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.period * NSEC_PER_SEC));
     dispatch_after(playTime, dispatch_get_main_queue(), ^(void){
         [self stop];
-        if (sameStop && completed) completed();
     });
     
-    if (!sameStop && completed) {
-        dispatch_time_t endTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.duration * NSEC_PER_SEC));
-        dispatch_after(endTime, dispatch_get_main_queue(), ^(void){
-            if (completed)completed();
-        });
-    }
+    dispatch_time_t endTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.duration * NSEC_PER_SEC));
+    dispatch_after(endTime, dispatch_get_main_queue(), ^(void){
+        if (completed)completed();
+    });
+
 
 }
 
 - (void)stop {
+    if (self.note == BCNoteMute) return;
+    
     AudioOutputUnitStop(self.toneUnit);
     AudioUnitUninitialize(self.toneUnit);
     AudioComponentInstanceDispose(self.toneUnit);
