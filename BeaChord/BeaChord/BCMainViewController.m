@@ -75,6 +75,8 @@
 
         [self.editableControls setValue:@YES forKey:@"enabled"];
         
+        [self.currentChord stop];
+        
     } else {
         if ([self isPlayer]) {
             [self.beaconController startListeningForBeacons];

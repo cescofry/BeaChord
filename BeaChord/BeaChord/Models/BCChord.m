@@ -43,17 +43,17 @@
 }
 
 - (BOOL)isEqual:(BCChord *)object {
-    BCTone *thisTone = [self.tones firstObject];
-    BCTone *objTone = [object.tones firstObject];
+    return (self.hash == object.hash);
+}
+
+- (NSUInteger)hash {
+    __block NSUInteger hash = 0;
     
-    BOOL isFirstSame = ((thisTone.note == objTone.note) && (thisTone.duration == objTone.duration));
+    [self.tones enumerateObjectsUsingBlock:^(BCTone *obj, NSUInteger idx, BOOL *stop) {
+        hash += obj.note << (idx * 4);
+    }];
     
-    thisTone = [self.tones objectAtIndex:1];
-    objTone = [object.tones objectAtIndex:1];
-    
-    BOOL isSecondSame = ((thisTone.note == objTone.note) && (thisTone.duration == objTone.duration));
-    
-    return (isFirstSame && isSecondSame);
+    return hash;
 }
 
 - (void)play {
