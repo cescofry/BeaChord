@@ -54,6 +54,7 @@ static NSString * const BCProxmityIdentifier = @"com.nscodernightlondon.beachord
 - (void)stopListeningForBeacons {
     CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:self.proximityUUID identifier:BCProxmityIdentifier];
     [self.locationManager stopMonitoringForRegion:region];
+    [self.currentChord stop];
 }
 
 - (void)startBroadcastingAsBeaconType:(BCBeaconType)beaconType {

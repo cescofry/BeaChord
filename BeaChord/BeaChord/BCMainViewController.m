@@ -50,20 +50,22 @@
     if ([self isActive]) {
         [self deActivate];
 
-        self.startButton.titleLabel.text = @"Start";
+        [self.startButton setTitle:@"Start" forState:UIControlStateNormal];
         self.startButton.tintColor = [UIColor blueColor];
         
     } else {
         if ([self isPlayer]) {
             [self.beaconController startListeningForBeacons];
             self.isListening = YES;
+            self.isBroadcasting = NO;
 
         } else {
             [self.beaconController startBroadcastingAsBeaconType:[self.segmentedControl selectedSegmentIndex]];
             self.isBroadcasting = YES;
+            self.isListening = NO;
         }
 
-        self.startButton.titleLabel.text = @"Stop";
+        [self.startButton setTitle:@"Stop" forState:UIControlStateNormal];
         self.startButton.tintColor = [UIColor redColor];
     }
 }
