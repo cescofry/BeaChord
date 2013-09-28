@@ -97,8 +97,14 @@ static NSString * const BCProxmityIdentifier = @"com.nscodernightlondon.beachord
 - (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region {
     self.beacons = beacons; // This is rough, there should be an API for getting data.
     
+    if (!self.currentChord) {
+        self.currentChord = [self chordFromBeacons];
+        [self.currentChord arpeggio];
+        return;
+    }
+    
     BCChord *chord = [self chordFromBeacons];
-    if ([self.currentChord isEqual:chord]) {
+    if (![self.currentChord isEqual:chord]) {
         [self.currentChord stop];
         self.currentChord = chord;
         [self.currentChord arpeggio];
