@@ -41,6 +41,7 @@
     
     [super viewDidLoad];
     self.beaconController = [BCBeaconController new];
+    self.beaconController.delegate = self;
     
     [self.segmentedControl setAlpha:(self.isInMelodyMode)?0.0 : 1.0];
     [self.textView setAlpha:(self.isInMelodyMode)?0.0 : 1.0];
