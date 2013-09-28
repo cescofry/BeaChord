@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BCMainViewController : UIViewController
+#import "BCBeaconController.h"
+
+@interface BCMainViewController : UIViewController <BCBeaconControllerDelegate>
 
 @end

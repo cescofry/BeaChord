@@ -16,9 +16,18 @@ typedef NS_ENUM(UInt16, BCBeaconType) {
     BCBeaconTypeRythm
 };
 
+@class BCBeaconController;
+
+@protocol BCBeaconControllerDelegate <NSObject>
+
+@required
+- (void)beaconController:(BCBeaconController *)beaconController didChangeBeacons:(NSArray *)beacons;
+
+@end
+
 @interface BCBeaconController : NSObject <CLLocationManagerDelegate, CBPeripheralManagerDelegate>
 
-@property (nonatomic, copy, readonly) NSArray *beacons;
+@property (weak, nonatomic) id<BCBeaconControllerDelegate> delegate;
 
 - (void)startListeningForBeacons;
 - (void)stopListeningForBeacons;

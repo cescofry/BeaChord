@@ -8,13 +8,15 @@
 
 #import "BCMainViewController.h"
 
-#import "BCBeaconController.h"
+#import "BCTone.h"
+#import "BCChord.h"
 
 @interface BCMainViewController ()
 
 @property (strong, nonatomic) BCBeaconController *beaconController;
 @property (assign, nonatomic) BOOL isBroadcasting;
 @property (assign, nonatomic) BOOL isListening;
+@property (nonatomic, strong) BCChord *currentChord;
 
 @property (nonatomic, strong) IBOutlet UISwitch *modeSwitch;
 @property (nonatomic, strong) IBOutlet UILabel *udidLabel;
@@ -70,6 +72,30 @@
     }
 }
 
+#pragma mark - BCBeaconControllerDelegate
+
+- (void)beaconController:(BCBeaconController *)beaconController didChangeBeacons:(NSArray *)beacons {
+    if ([beacons count] == 0) {
+        [self.currentChord stop];
+    }
+
+    // Play Chord based on beacons
+    if (!self.currentChord) {
+        self.currentChord = [self chordFromBeacons:beacons];
+        [self.currentChord arpeggio];
+        return;
+    }
+
+    BCChord *chord = [self chordFromBeacons:beacons];
+    if (![self.currentChord isEqual:chord]) {
+        [self.currentChord stop];
+
+        self.currentChord = chord;
+        [self.currentChord arpeggio];
+    }
+
+}
+
 #pragma mark - Private methods
 
 - (BOOL)isActive {
@@ -91,5 +117,55 @@
 - (BOOL)isPlayer {
     return [self.modeSwitch isOn];
 }
+
+- (BCChord *)chordFromBeacons:(NSArray *)beacons {
+    if (!beacons || [beacons count] == 0) {
+        return nil;
+    }
+
+    static UInt16 _primaryChordBeacon = 0;
+
+    __block BCNote note = BCNoteA;
+    __block float time = 0.3;
+    __block BOOL isMajor;
+
+    [beacons enumerateObjectsUsingBlock:^(CLBeacon *beacon, NSUInteger idx, BOOL *stop) {
+        __block UInt16 major = [beacon.major integerValue];
+        __block UInt16 minor = [beacon.minor integerValue];
+
+        NSInteger distance = labs([beacon rssi]);
+        // 40 -> 80 : < 50; 50 -> 70; > 70
+        NSInteger proximity = 1;
+        if (distance < 40) proximity = 0;
+        else if (distance > 60) proximity = 2;
+
+        switch (major) {
+            case BCBeaconTypeChord: {
+                if (_primaryChordBeacon == 0) _primaryChordBeacon = minor;
+                int chordOffset = (minor == _primaryChordBeacon)? 0 : 6;
+                note += (proximity * 2) + chordOffset;
+            }
+                break;
+            case BCBeaconTypeColour:
+                isMajor = (proximity < 1);
+                break;
+            case BCBeaconTypeRythm:
+                time =  (0.2 * (proximity + 1));
+                break;
+            default:
+                break;
+        }
+    }];
+
+    BCTone *tone = [BCTone toneFromNote:note];
+    BCChord *chord = (isMajor)? [BCChord majorChordFromTone:tone] : [BCChord minorChordFromTone:tone];
+
+    [chord.tones enumerateObjectsUsingBlock:^(BCTone *obj, NSUInteger idx, BOOL *stop) {
+        obj.duration = time;
+    }];
+
+    return chord;
+}
+
 
 @end
