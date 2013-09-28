@@ -9,8 +9,6 @@
 #import "BCChord.h"
 #import "BCTone.h"
 
-const float _arpeggioTime =  0.3;
-
 @interface BCChord ()
 
 @property(nonatomic, strong) BCTone *currentArpeggioTone;
@@ -24,7 +22,6 @@ const float _arpeggioTime =  0.3;
 +(instancetype)chordWithTones:(NSArray *)tones {
     BCChord *chord = [[BCChord alloc] init];
     chord.tones = tones;
-    chord.time = _arpeggioTime;
     return chord;
 }
 
@@ -48,19 +45,19 @@ const float _arpeggioTime =  0.3;
     BCTone *thisTone = [self.tones firstObject];
     BCTone *objTone = [object.tones firstObject];
     
-    BOOL isFirstSame = (thisTone.note == objTone.note);
+    BOOL isFirstSame = ((thisTone.note == objTone.note) && (thisTone.duration == objTone.duration));
     
     thisTone = [self.tones objectAtIndex:1];
     objTone = [object.tones objectAtIndex:1];
     
-    BOOL isSecondSame = (thisTone.note == objTone.note);
+    BOOL isSecondSame = ((thisTone.note == objTone.note) && (thisTone.duration == objTone.duration));
     
-    return (isFirstSame && isSecondSame && self.time == object.time && self);
+    return (isFirstSame && isSecondSame);
 }
 
 - (void)play {
     [self.tones enumerateObjectsUsingBlock:^(BCTone *obj, NSUInteger idx, BOOL *stop) {
-        [obj play];
+        [obj playCompleted:NULL];
     }];
     _isPlaying = YES;
 }
@@ -92,16 +89,11 @@ const float _arpeggioTime =  0.3;
         self.currentArpeggioTone = [self.arpeggioEnumerator nextObject];
     }
     
-    [self.currentArpeggioTone play];
-    NSLog(@"tone: %d", self.currentArpeggioTone.note);
-
-    
-    
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.time * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+    [self.currentArpeggioTone playCompleted:^{
         if (!self.isPlaying) return;
         [self nextArpeggio];
-    });
+    }];
+    NSLog(@"tone: %d", self.currentArpeggioTone.note);
 }
 
 - (void)arpeggio {

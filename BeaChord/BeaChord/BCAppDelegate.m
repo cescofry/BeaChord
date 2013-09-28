@@ -13,24 +13,41 @@
 @implementation BCAppDelegate
 
 - (void)playToneDirectlyFromTheAppDelegate {
-    static BCTone *_tone;
+
+    BCTone *cTone = [BCTone toneFromNote:BCNoteC];
+    [cTone setDuration:1];
+    [cTone setPeriod:1];
     
-    if (!_tone) _tone = [BCTone toneFromNote:BCNoteC];
-    else _tone = [_tone toneByAddingSemitones:2];
-    BCChord *chord = [BCChord majorChordFromTone:_tone];
+    BCTone *eTone = [BCTone toneFromNote:BCNoteE];
+    [eTone setDuration:0.5];
+    [eTone setPeriod:0.5];
+    
+    BCTone *gTone = [BCTone toneFromNote:BCNoteG];
+    [gTone setDuration:0.5];
+    [gTone setPeriod:0.5];
+    
+    BCTone *fTone = [BCTone toneFromNote:BCNoteF];
+    [fTone setDuration:1];
+    [fTone setPeriod:1];
+    
+    BCTone *aTone = [BCTone toneFromNote:BCNoteA];
+    aTone.octave++;
+    [aTone setDuration:0.5];
+    [aTone setPeriod:0.5];
+    
+    BCTone *cToneUp = [BCTone toneFromNote:BCNoteC];
+    cToneUp.octave++;
+    [cToneUp setDuration:0.5];
+    [cToneUp setPeriod:0.5];
+    
+    BCChord *chord = [BCChord chordWithTones:@[cTone, eTone, gTone, fTone, aTone, cToneUp]];
+    
     [chord arpeggio];
     
-    
-    double delayInSeconds = (chord.time * 6);
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [chord stop];
-        [self playToneDirectlyFromTheAppDelegate];
-    });
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    //[self playToneDirectlyFromTheAppDelegate];
+    [self playToneDirectlyFromTheAppDelegate];
     
     return YES;
 }

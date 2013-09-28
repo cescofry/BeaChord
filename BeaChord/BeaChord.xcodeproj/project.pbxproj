@@ -62,6 +62,7 @@
 		A50A775A17F5C4F2004F8EA1 /* BCChord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCChord.m; sourceTree = "<group>"; };
 		A5F2CB7F17F62D3D00652C75 /* BCIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCIndicatorView.m; sourceTree = "<group>"; };
 		A5F2CB8017F62D3D00652C75 /* BCIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCIndicatorView.h; sourceTree = "<group>"; };
+		A5F2CB8217F6814400652C75 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		EEF067E517F5D44D00EFE3A5 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		EEF067EC17F5D5C300EFE3A5 /* BCMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BCMainViewController.h; path = BeaChord/BCMainViewController.h; sourceTree = SOURCE_ROOT; };
 		EEF067ED17F5D5C300EFE3A5 /* BCMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BCMainViewController.m; path = BeaChord/BCMainViewController.m; sourceTree = SOURCE_ROOT; };
@@ -148,6 +149,7 @@
 				A50A772C17F597B4004F8EA1 /* main.m */,
 				A50A772E17F597B4004F8EA1 /* BeaChord-Prefix.pch */,
 				EEF067E517F5D44D00EFE3A5 /* Storyboard.storyboard */,
+				A5F2CB8217F6814400652C75 /* Config.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";

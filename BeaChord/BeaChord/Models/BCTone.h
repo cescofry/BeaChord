@@ -24,11 +24,13 @@ typedef enum {
 } BCNote;
 
 @interface BCTone : NSObject
-@property (nonatomic, assign) BCNote note;
-@property (nonatomic, assign) NSInteger octave;
+@property(nonatomic, assign) BCNote note;
+@property(nonatomic, assign) NSInteger octave;
+@property(nonatomic, assign) float duration; // how long it does play for
+@property(nonatomic, assign) float period;   // lenght of the note (>= duration)
 
 + (instancetype)toneFromNote:(BCNote)note;
 - (instancetype)toneByAddingSemitones:(NSInteger)semitones;
-- (void)play;
+- (void)playCompleted:(voidBlock)completed;
 - (void)stop;
 @end

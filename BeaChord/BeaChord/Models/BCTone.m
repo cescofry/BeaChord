@@ -11,6 +11,7 @@
 
 const float sqrSemitone = 1.059463094359;
 const float a4Hrz = 440.0;
+const float defaultTime =  0.3;
 
 @interface BCTone ()
 
@@ -82,6 +83,8 @@ void ToneInterruptionListener(void *inClientData, UInt32 inInterruptionState)
     BCTone *tone = [[BCTone alloc] init];
     tone.note = note;
     tone.octave = 4;
+    tone.period = defaultTime;
+    tone.duration = defaultTime;
     
     return tone;
 }
@@ -161,7 +164,8 @@ void ToneInterruptionListener(void *inClientData, UInt32 inInterruptionState)
     return _toneUnit;
 }
 
-- (void)play {
+- (void)playCompleted:(voidBlock)completed {
+    
     // Stop changing parameters on the unit
     OSErr err = AudioUnitInitialize(self.toneUnit);
     NSAssert1(err == noErr, @"Error initializing unit: %d", err);
@@ -169,6 +173,21 @@ void ToneInterruptionListener(void *inClientData, UInt32 inInterruptionState)
     // Start playback
     err = AudioOutputUnitStart(self.toneUnit);
     NSAssert1(err == noErr, @"Error starting unit: %d", err);
+    
+    BOOL sameStop = (self.period == self.duration);
+    
+    dispatch_time_t playTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.period * NSEC_PER_SEC));
+    dispatch_after(playTime, dispatch_get_main_queue(), ^(void){
+        [self stop];
+        if (sameStop && completed) completed();
+    });
+    
+    if (!sameStop && completed) {
+        dispatch_time_t endTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.duration * NSEC_PER_SEC));
+        dispatch_after(endTime, dispatch_get_main_queue(), ^(void){
+            if (completed)completed();
+        });
+    }
 
 }
 

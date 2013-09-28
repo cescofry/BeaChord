@@ -172,7 +172,10 @@ static NSString * const BCProxmityIdentifier = @"com.nscodernightlondon.beachord
     
     BCTone *tone = [BCTone toneFromNote:note];
     BCChord *chord = (isMajor)? [BCChord majorChordFromTone:tone] : [BCChord minorChordFromTone:tone];
-    chord.time = time;
+    
+    [chord.tones enumerateObjectsUsingBlock:^(BCTone *obj, NSUInteger idx, BOOL *stop) {
+        obj.duration = time;
+    }];
     
     return chord;
 }

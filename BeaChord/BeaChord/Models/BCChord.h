@@ -14,7 +14,6 @@
 
 @property(nonatomic, strong) NSArray *tones;
 @property(nonatomic, assign, readonly) BOOL isPlaying;
-@property(nonatomic, assign) float time;
 
 +(instancetype)chordWithTones:(NSArray *)tones;
 +(instancetype)majorChordFromTone:(BCTone *)tone;
