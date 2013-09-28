@@ -96,25 +96,30 @@ const int _periodLength = 8;
 
 - (void)synchMelodyAnPlay:(BCChord *)melody{
     
+    if (self.nextMelody) return;
+    
     CFAbsoluteTime currentTime = CFAbsoluteTimeGetCurrent();
-    double nextRound = (NSInteger)currentTime % _periodLength;
-    nextRound += (currentTime - (NSInteger)currentTime);
+    double nextRound = fmod(currentTime, _periodLength);
     
     NSLog(@"next: %.2f [%f]", nextRound, currentTime);
     
     self.nextMelody = melody;
-
+    
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(nextRound * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        NSLog(@"starts now:");
         [self.currentMelody stop];
         self.currentMelody = self.nextMelody;
-        self.nextMelody = nil;
+
         [self.currentMelody playMelody];
+        
+        self.nextMelody = nil;
     });
     
 }
 
 - (void)stop {
+    NSLog(@"Stop");
     [self.currentMelody stop];
 }
 
