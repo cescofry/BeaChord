@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "BCChord.h"
 typedef NS_ENUM(NSUInteger, BCMelodyType) {
-    BCMelodyTypeMain,
     BCMelodyTypeBase,
+    BCMelodyTypeMain,
     BCMelodyTypeHigh
 };
 
