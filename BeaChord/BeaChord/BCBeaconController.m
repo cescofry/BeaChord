@@ -127,6 +127,8 @@ static NSString * const BCProxmityIdentifier = @"com.nscodernightlondon.beachord
     if ([region isKindOfClass:[CLBeaconRegion class]]) {
         [self.locationManager stopRangingBeaconsInRegion:(CLBeaconRegion *)region];
     }
+    
+    if (self.beacons.count == 0) [self.currentChord stop];
 }
 
 #pragma mark - Play on beacons changes
@@ -152,6 +154,7 @@ static NSString * const BCProxmityIdentifier = @"com.nscodernightlondon.beachord
         
         switch (major) {
             case BCBeaconTypeChord: {
+                if (_primaryChordBeacon == 0) _primaryChordBeacon = minor;
                 int chordOffset = (minor == _primaryChordBeacon)? 0 : 6;
                 note += (proximity * 2) + chordOffset;
             }
