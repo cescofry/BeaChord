@@ -59,11 +59,7 @@
             self.isListening = YES;
 
         } else {
-            if ([self.segmentedControl selectedSegmentIndex] == 0) {
-                [self.beaconController startBroadcastingAsBeaconType:BCBeaconTypeChord];
-            } else {
-                [self.beaconController startBroadcastingAsBeaconType:BCBeaconTypeColour];
-            }
+            [self.beaconController startBroadcastingAsBeaconType:[self.segmentedControl selectedSegmentIndex]];
             self.isBroadcasting = YES;
         }
 
