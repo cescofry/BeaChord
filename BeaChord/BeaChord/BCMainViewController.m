@@ -168,10 +168,11 @@
         __block UInt16 minor = [beacon.minor integerValue];
 
         NSInteger distance = labs([beacon rssi]);
+        NSInteger proximity = abs([beacon proximity] - 1);
+        
         // 40 -> 80 : < 50; 50 -> 70; > 70
-        NSInteger proximity = 1;
-        if (distance < 75) proximity = 0;
-        else if (distance > 85) proximity = 2;
+       // if (distance < 75) proximity = 0;
+        //else if (distance > 85) proximity = 2;
         
         NSLog(@"distance: %d", distance);
 
