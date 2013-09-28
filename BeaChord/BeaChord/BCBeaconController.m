@@ -150,7 +150,7 @@ static NSString * const BCProxmityIdentifier = @"com.nscodernightlondon.beachord
         // 40 -> 80 : < 50; 50 -> 70; > 70
         NSInteger proximity = 1;
         if (distance < 40) proximity = 0;
-        else if (distance > 70) proximity = 2;
+        else if (distance > 60) proximity = 2;
         
         switch (major) {
             case BCBeaconTypeChord: {
