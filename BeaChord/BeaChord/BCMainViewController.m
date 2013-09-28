@@ -76,7 +76,8 @@
 
         [self.editableControls setValue:@YES forKey:@"enabled"];
         
-        [self.currentChord stop];
+        if (self.isInMelodyMode) [self.melodyPlayer stop];
+        else [self.currentChord stop];
         
     } else {
         if ([self isPlayer]) {
@@ -114,7 +115,7 @@
         
         NSLog(@"\ni - %@\no - %@", self.currentChord.description, chord.description);
         
-        if (!self.isInMelodyMode)[self.currentChord stop];
+        if (self.isInMelodyMode)[self.currentChord stop];
         self.currentChord = chord;
     }
     

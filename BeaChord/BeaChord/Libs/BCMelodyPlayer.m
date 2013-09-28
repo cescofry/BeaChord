@@ -121,6 +121,7 @@ const int _periodLength = 8;
 - (void)stop {
     NSLog(@"Stop");
     [self.currentMelody stop];
+    self.currentMelody = nil;
 }
 
 #pragma mark --
