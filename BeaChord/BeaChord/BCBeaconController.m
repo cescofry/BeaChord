@@ -103,6 +103,17 @@ static NSString * const BCProxmityIdentifier = @"com.nscodernightlondon.beachord
     NSLog(@"Region: %@, error: %@", region, error);
 }
 
+- (void)locationManager:(CLLocationManager *)manager didStartMonitoringForRegion:(CLRegion *)region {
+    CLBeaconRegion *listeningRegion = [self listeningRegion];
+
+    if ([region isKindOfClass:[CLBeaconRegion class]]) {
+        CLBeaconRegion *beaconRegion = (CLBeaconRegion *)region;
+        if ([beaconRegion.proximityUUID isEqual:listeningRegion.proximityUUID]) {
+            [self.locationManager startRangingBeaconsInRegion:(CLBeaconRegion *)region];
+        }
+    }
+}
+
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
     CLBeaconRegion *listeningRegion = [self listeningRegion];
 
