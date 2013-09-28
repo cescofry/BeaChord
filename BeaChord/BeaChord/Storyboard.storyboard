@@ -106,6 +106,8 @@
                         <outlet property="modeSwitch" destination="ohB-SA-jkJ" id="1Vh-yj-BWR"/>
                         <outlet property="segmentedControl" destination="ysS-jg-gPg" id="3ZB-ib-pbE"/>
                         <outlet property="startButton" destination="RbW-E7-bKi" id="na0-Mb-U7r"/>
+                        <outletCollection property="editableControls" destination="ohB-SA-jkJ" id="Xkg-az-pa9"/>
+                        <outletCollection property="editableControls" destination="ysS-jg-gPg" id="CFG-gr-sBA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YMQ-Se-GR0" userLabel="First Responder" sceneMemberID="firstResponder"/>
