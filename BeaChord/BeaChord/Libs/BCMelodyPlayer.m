@@ -9,7 +9,7 @@
 #import "BCMelodyPlayer.h"
 #import "BCChord.h"
 
-const int _periodLength = 4;
+const int _periodLength = 8;
 
 @interface BCMelodyPlayer ()
 
@@ -63,11 +63,11 @@ const int _periodLength = 4;
             BCTone *muteTone = [BCTone muteToneOfDuration:0.5];
             
             BCTone *cTone = [BCTone toneFromNote:BCNoteC];
-            cTone.octave--;
-            [cTone setDuration:0.125];
-            [cTone setPeriod:0.125];
+            cTone.octave++;
+            [cTone setDuration:0.25];
+            [cTone setPeriod:0.25];
             
-            melody = [BCChord chordWithTones:@[muteTone, cTone, cTone]];
+            melody = [BCChord chordWithTones:@[muteTone, cTone]];
         }
             break;
         case BCMelodyTypeBase:
@@ -95,9 +95,11 @@ const int _periodLength = 4;
 
 - (void)synchMelodyAnPlay:(BCMelodyType)melodyType {
     
-    CFAbsoluteTime currentTime = (NSInteger)CFAbsoluteTimeGetCurrent();
+    CFAbsoluteTime currentTime = CFAbsoluteTimeGetCurrent();
     double nextRound = (NSInteger)currentTime % _periodLength;
     nextRound += (currentTime - (NSInteger)currentTime);
+    
+    NSLog(@"next: %.2f [%f]", nextRound, currentTime);
     
     self.currentMelody = [self melodyOfType:melodyType];
 

@@ -14,12 +14,12 @@
 - (void)playToneDirectlyFromTheAppDelegate {
 
     BCMelodyPlayer *player = [BCMelodyPlayer sharedInstance];
-    [player synchMelodyAnPlay:BCMelodyTypeMain];
+    [player synchMelodyAnPlay:BCMelodyTypeBase];
     
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [self playToneDirectlyFromTheAppDelegate];
+    //[self playToneDirectlyFromTheAppDelegate];
     
     return YES;
 }

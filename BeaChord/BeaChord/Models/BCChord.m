@@ -80,6 +80,10 @@
 }
 
 - (void)nextTone {
+    
+    CFAbsoluteTime currentTime = CFAbsoluteTimeGetCurrent();
+    NSLog(@"next: %.2f", currentTime);
+    
     if (self.currentArpeggioTone) [self.currentArpeggioTone stop];
     
     self.currentArpeggioTone = [self.arpeggioEnumerator nextObject];
