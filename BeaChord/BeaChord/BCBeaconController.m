@@ -7,8 +7,6 @@
 //
 
 #import "BCBeaconController.h"
-#import "BCTone.h"
-#import "BCChord.h"
 
 static NSString * const BCProximityUUIDString = @"60FD838B-8FA4-4DD5-9C7F-8A7C7CC4D05C";
 static NSString * const BCProxmityIdentifier = @"com.nscodernightlondon.beachord";
@@ -16,11 +14,8 @@ static NSString * const BCProxmityIdentifier = @"com.nscodernightlondon.beachord
 @interface BCBeaconController ()
 
 @property (nonatomic, strong, readonly) NSUUID *proximityUUID;
-@property (nonatomic, copy, readwrite) NSArray *beacons;
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) CBPeripheralManager *peripheralManager;
-
-@property (nonatomic, strong) BCChord *currentChord;
 
 @end
 
@@ -44,7 +39,7 @@ static NSString * const BCProxmityIdentifier = @"com.nscodernightlondon.beachord
 #pragma mark - Public methods
 
 - (void)startListeningForBeacons {
-    CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:self.proximityUUID identifier:BCProxmityIdentifier];
+    CLBeaconRegion *region = [self listeningRegion];
     region.notifyOnEntry = YES;
     region.notifyOnExit = YES;
     region.notifyEntryStateOnDisplay = NO;
@@ -52,9 +47,12 @@ static NSString * const BCProxmityIdentifier = @"com.nscodernightlondon.beachord
 }
 
 - (void)stopListeningForBeacons {
-    CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:self.proximityUUID identifier:BCProxmityIdentifier];
+    CLBeaconRegion *region = [self listeningRegion];
     [self.locationManager stopMonitoringForRegion:region];
-    [self.currentChord stop];
+
+    if ([self.delegate respondsToSelector:@selector(beaconController:didChangeBeacons:)]) {
+        [self.delegate beaconController:self didChangeBeacons:@[]];
+    }
 }
 
 - (void)startBroadcastingAsBeaconType:(BCBeaconType)beaconType {
@@ -90,27 +88,15 @@ static NSString * const BCProxmityIdentifier = @"com.nscodernightlondon.beachord
 #pragma mark CBPeripheralManager delegate methods
 
 - (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral {
-    NSLog(@"Did Update State for peripheral: %@", peripheral);
+    // Required, but not used
 }
 
 #pragma mark CLLocationManager delegate methods
 
 - (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region {
-    self.beacons = beacons; // This is rough, there should be an API for getting data.
-    
-    if (!self.currentChord) {
-        self.currentChord = [self chordFromBeacons];
-        [self.currentChord arpeggio];
-        return;
+    if ([self.delegate respondsToSelector:@selector(beaconController:didChangeBeacons:)]) {
+        [self.delegate beaconController:self didChangeBeacons:beacons];
     }
-    
-    BCChord *chord = [self chordFromBeacons];
-    if (![self.currentChord isEqual:chord]) {
-        [self.currentChord stop];
-        self.currentChord = chord;
-        [self.currentChord arpeggio];
-    }
-    
 }
 
 - (void)locationManager:(CLLocationManager *)manager rangingBeaconsDidFailForRegion:(CLBeaconRegion *)region withError:(NSError *)error {
@@ -118,67 +104,38 @@ static NSString * const BCProxmityIdentifier = @"com.nscodernightlondon.beachord
 }
 
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
+    CLBeaconRegion *listeningRegion = [self listeningRegion];
+
     if ([region isKindOfClass:[CLBeaconRegion class]]) {
-        [self.locationManager startRangingBeaconsInRegion:(CLBeaconRegion *)region];
+        CLBeaconRegion *beaconRegion = (CLBeaconRegion *)region;
+        if ([beaconRegion.proximityUUID isEqual:listeningRegion.proximityUUID]) {
+            [self.locationManager startRangingBeaconsInRegion:(CLBeaconRegion *)region];
+        }
+
     }
 }
 
 - (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region {
+    CLBeaconRegion *listeningRegion = [self listeningRegion];
+
     if ([region isKindOfClass:[CLBeaconRegion class]]) {
-        [self.locationManager stopRangingBeaconsInRegion:(CLBeaconRegion *)region];
-    }
-    
-    if (self.beacons.count == 0) [self.currentChord stop];
-}
+        CLBeaconRegion *beaconRegion = (CLBeaconRegion *)region;
+        if ([beaconRegion.proximityUUID isEqual:listeningRegion.proximityUUID]) {
+            [self.locationManager stopRangingBeaconsInRegion:(CLBeaconRegion *)region];
 
-#pragma mark - Play on beacons changes
-
-
-- (BCChord *)chordFromBeacons {
-    
-    static UInt16 _primaryChordBeacon = 0;
-    
-    __block BCNote note = BCNoteA;
-    __block float time = 0.3;
-    __block BOOL isMajor;
-    
-    [self.beacons enumerateObjectsUsingBlock:^(CLBeacon *beacon, NSUInteger idx, BOOL *stop) {
-        __block UInt16 major = [beacon.major integerValue];
-        __block UInt16 minor = [beacon.minor integerValue];
-        
-        NSInteger distance = labs([beacon rssi]);
-        // 40 -> 80 : < 50; 50 -> 70; > 70
-        NSInteger proximity = 1;
-        if (distance < 40) proximity = 0;
-        else if (distance > 60) proximity = 2;
-        
-        switch (major) {
-            case BCBeaconTypeChord: {
-                if (_primaryChordBeacon == 0) _primaryChordBeacon = minor;
-                int chordOffset = (minor == _primaryChordBeacon)? 0 : 6;
-                note += (proximity * 2) + chordOffset;
+            // Update with an empty beacons array
+            if ([self.delegate respondsToSelector:@selector(beaconController:didChangeBeacons:)]) {
+                [self.delegate beaconController:self didChangeBeacons:@[]];
             }
-                break;
-            case BCBeaconTypeColour:
-                isMajor = (proximity < 1);
-                break;
-            case BCBeaconTypeRythm:
-                time =  (0.2 * (proximity + 1));
-                break;
-            default:
-                break;
         }
-    }];
-    
-    BCTone *tone = [BCTone toneFromNote:note];
-    BCChord *chord = (isMajor)? [BCChord majorChordFromTone:tone] : [BCChord minorChordFromTone:tone];
-    
-    [chord.tones enumerateObjectsUsingBlock:^(BCTone *obj, NSUInteger idx, BOOL *stop) {
-        obj.duration = time;
-    }];
-    
-    return chord;
+    }
+
 }
 
+#pragma mark - Private methods
+
+- (CLBeaconRegion *)listeningRegion {
+    return [[CLBeaconRegion alloc] initWithProximityUUID:self.proximityUUID identifier:BCProxmityIdentifier];
+}
 
 @end
