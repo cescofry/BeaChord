@@ -42,11 +42,15 @@
     [super viewDidLoad];
     self.beaconController = [BCBeaconController new];
     self.beaconController.delegate = self;
-    
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+
+
     [self.segmentedControl setAlpha:(self.isInMelodyMode)?0.0 : 1.0];
     [self.textView setAlpha:(self.isInMelodyMode)?0.0 : 1.0];
     [self switchModeAction:self.modeSwitch];
-    
 }
 
 - (BCMelodyPlayer *)melodyPlayer {
