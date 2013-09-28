@@ -146,7 +146,13 @@ static NSString * const BCProxmityIdentifier = @"com.nscodernightlondon.beachord
 #pragma mark - Private methods
 
 - (CLBeaconRegion *)listeningRegion {
-    return [[CLBeaconRegion alloc] initWithProximityUUID:self.proximityUUID identifier:BCProxmityIdentifier];
+    static CLBeaconRegion *region = nil;
+
+    if (!region) {
+        region = [[CLBeaconRegion alloc] initWithProximityUUID:self.proximityUUID identifier:BCProxmityIdentifier];
+    }
+
+    return region;
 }
 
 @end
