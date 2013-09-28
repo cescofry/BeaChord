@@ -23,6 +23,8 @@
 @property (nonatomic, strong) IBOutlet UISegmentedControl *segmentedControl;
 @property (nonatomic, strong) IBOutlet UIButton *startButton;
 
+@property (nonatomic, copy) IBOutletCollection(UIControl) NSArray *editableControls;
+
 - (IBAction)switchModeAction:(id)sender;
 - (IBAction)changedSegment:(id)sender;
 - (IBAction)startButtonAction:(id)sender;
@@ -54,6 +56,8 @@
 
         [self.startButton setTitle:@"Start" forState:UIControlStateNormal];
         self.startButton.tintColor = [UIColor blueColor];
+
+        [self.editableControls setValue:@YES forKey:@"enabled"];
         
     } else {
         if ([self isPlayer]) {
@@ -69,6 +73,7 @@
 
         [self.startButton setTitle:@"Stop" forState:UIControlStateNormal];
         self.startButton.tintColor = [UIColor redColor];
+        [self.editableControls setValue:@NO forKey:@"enabled"];
     }
 }
 
