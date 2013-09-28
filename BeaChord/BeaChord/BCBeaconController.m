@@ -150,7 +150,7 @@ static NSString * const BCProxmityIdentifier = @"com.nscodernightlondon.beachord
         // 40 -> 80 : < 50; 50 -> 70; > 70
         NSInteger proximity = 1;
         if (distance < 40) proximity = 0;
-        else if (distance > 70) proximity = 2;
+        else if (distance > 60) proximity = 2;
         
         switch (major) {
             case BCBeaconTypeChord: {
@@ -163,7 +163,7 @@ static NSString * const BCProxmityIdentifier = @"com.nscodernightlondon.beachord
                 isMajor = (proximity < 1);
                 break;
             case BCBeaconTypeRythm:
-                time =  (0.3 * (proximity + 1));
+                time =  (0.2 * (proximity + 1));
                 break;
             default:
                 break;
