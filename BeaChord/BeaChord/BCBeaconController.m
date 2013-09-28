@@ -146,7 +146,7 @@ static NSString * const BCProxmityIdentifier = @"com.nscodernightlondon.beachord
         __block UInt16 major = [beacon.major integerValue];
         __block UInt16 minor = [beacon.minor integerValue];
         
-        NSInteger distance = abs([beacon rssi]);
+        NSInteger distance = labs([beacon rssi]);
         // 40 -> 80 : < 50; 50 -> 70; > 70
         NSInteger proximity = 1;
         if (distance < 40) proximity = 0;

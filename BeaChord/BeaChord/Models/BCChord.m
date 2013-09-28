@@ -14,7 +14,6 @@
 @property(nonatomic, strong) BCTone *currentArpeggioTone;
 @property (nonatomic, strong) NSEnumerator *arpeggioEnumerator;
 @property(nonatomic, assign) BOOL isAscending;
-@property(nonatomic, assign) BOOL isMelody;
 
 @end
 
@@ -79,13 +78,12 @@
     return _arpeggioEnumerator;
 }
 
-- (void)nextTone {
+- (void)nextArpeggio {
     if (self.currentArpeggioTone) [self.currentArpeggioTone stop];
     
     self.currentArpeggioTone = [self.arpeggioEnumerator nextObject];
     if (!self.currentArpeggioTone) {
-        self.isAscending =  !self.isAscending;
-        if (self.isMelody && !self.isAscending) self.isAscending = YES;
+        self.isAscending = !self.isAscending;
         self.arpeggioEnumerator = (self.isAscending)? [self.tones objectEnumerator] : [self.tones reverseObjectEnumerator];
         [self.arpeggioEnumerator nextObject]; // discard first note as already playing
         self.currentArpeggioTone = [self.arpeggioEnumerator nextObject];
@@ -93,22 +91,16 @@
     
     [self.currentArpeggioTone playCompleted:^{
         if (!self.isPlaying) return;
-        [self nextTone];
+        [self nextArpeggio];
     }];
-    
-    NSLog(@"tone: %d", self.currentArpeggioTone.note);
+    NSLog(@"tone: %ld", self.currentArpeggioTone.note);
 }
 
 - (void)arpeggio {
     _isPlaying = YES;
     self.isAscending = YES;
-    [self nextTone];
+    [self nextArpeggio];
 }
 
-- (void)playMelody {
-    _isPlaying = YES;
-    self.isMelody = YES;
-    [self nextTone];
-}
 
 @end

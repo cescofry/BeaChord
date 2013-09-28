@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum {
+typedef NS_ENUM(NSInteger, BCNote) {
     BCNoteA,
     BCNoteASharp,
     BCNoteB,
@@ -21,7 +21,7 @@ typedef enum {
     BCNoteFSharp,
     BCNoteG,
     BCNoteGSharp
-} BCNote;
+};
 
 @interface BCTone : NSObject
 @property(nonatomic, assign) BCNote note;
