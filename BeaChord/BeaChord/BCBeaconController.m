@@ -163,7 +163,7 @@ static NSString * const BCProxmityIdentifier = @"com.nscodernightlondon.beachord
                 isMajor = (proximity < 1);
                 break;
             case BCBeaconTypeRythm:
-                time =  (0.3 * (proximity + 1));
+                time =  (0.2 * (proximity + 1));
                 break;
             default:
                 break;
