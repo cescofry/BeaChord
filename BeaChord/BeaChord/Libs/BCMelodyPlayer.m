@@ -96,13 +96,12 @@ const int _periodLength = 4;
 - (void)synchMelodyAnPlay:(BCMelodyType)melodyType {
     
     CFAbsoluteTime currentTime = (NSInteger)CFAbsoluteTimeGetCurrent();
-    NSInteger nextRound = (NSInteger)currentTime % _periodLength;
-    nextRound += (currentTime - nextRound);
+    double nextRound = (NSInteger)currentTime % _periodLength;
+    nextRound += (currentTime - (NSInteger)currentTime);
     
     self.currentMelody = [self melodyOfType:melodyType];
-    
-    double delayInSeconds = nextRound;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(nextRound * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [self.currentMelody playMelody];
     });
