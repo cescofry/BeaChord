@@ -170,8 +170,10 @@
         NSInteger distance = labs([beacon rssi]);
         // 40 -> 80 : < 50; 50 -> 70; > 70
         NSInteger proximity = 1;
-        if (distance < 40) proximity = 0;
-        else if (distance > 60) proximity = 2;
+        if (distance < 75) proximity = 0;
+        else if (distance > 85) proximity = 2;
+        
+        NSLog(@"distance: %d", distance);
 
         switch (major) {
             case BCBeaconTypeChord: {
@@ -194,9 +196,13 @@
         
     }];
     
+    NSInteger proximity = (NSInteger)((float)sumProximity / beacons.count);
+    
+    NSLog(@"Proximity: %d, %d [%d]", sumProximity, proximity, beacons.count);
+    
     BCChord *chord;
     if (self.isInMelodyMode) {
-        chord = [self.melodyPlayer melodyOfType:(NSInteger)(sumProximity / beacons.count)];
+        chord = [self.melodyPlayer melodyOfType:proximity];
     }
     else {
         BCTone *tone = [BCTone toneFromNote:note];
