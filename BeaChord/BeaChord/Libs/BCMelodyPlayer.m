@@ -95,7 +95,9 @@ const int _periodLength = 4;
 
 - (void)synchMelodyAnPlay:(BCMelodyType)melodyType {
     
-    NSInteger nextRound = (NSInteger)CFAbsoluteTimeGetCurrent() % _periodLength;
+    CFAbsoluteTime currentTime = (NSInteger)CFAbsoluteTimeGetCurrent();
+    NSInteger nextRound = (NSInteger)currentTime % _periodLength;
+    nextRound += (currentTime - nextRound);
     
     self.currentMelody = [self melodyOfType:melodyType];
     
