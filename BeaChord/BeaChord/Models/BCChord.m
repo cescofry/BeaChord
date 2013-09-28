@@ -44,6 +44,20 @@ const float _arpeggioTime =  0.3;
     return [self chordWithTones:@[tone, thirdMinor, fifth]];
 }
 
+- (BOOL)isEqual:(BCChord *)object {
+    BCTone *thisTone = [self.tones firstObject];
+    BCTone *objTone = [object.tones firstObject];
+    
+    BOOL isFirstSame = (thisTone.note == objTone.note);
+    
+    thisTone = [self.tones objectAtIndex:1];
+    objTone = [object.tones objectAtIndex:1];
+    
+    BOOL isSecondSame = (thisTone.note == objTone.note);
+    
+    return (isFirstSame && isSecondSame && self.time == object.time && self);
+}
+
 - (void)play {
     [self.tones enumerateObjectsUsingBlock:^(BCTone *obj, NSUInteger idx, BOOL *stop) {
         [obj play];
