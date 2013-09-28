@@ -41,6 +41,9 @@ static NSString * const BCProxmityIdentifier = @"com.nscodernightlondon.beachord
 
 - (void)startListeningForBeacons {
     CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:self.proximityUUID identifier:BCProxmityIdentifier];
+    region.notifyOnEntry = YES;
+    region.notifyOnExit = YES;
+    region.notifyEntryStateOnDisplay = NO;
     [self.locationManager startMonitoringForRegion:region];
 }
 
@@ -69,7 +72,7 @@ static NSString * const BCProxmityIdentifier = @"com.nscodernightlondon.beachord
     }
 
     CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:self.proximityUUID major:major minor:minor identifier:BCProxmityIdentifier];
-    NSDictionary *peripheralData = [region peripheralDataWithMeasuredPower:nil];
+    NSDictionary *peripheralData = [region peripheralDataWithMeasuredPower:@-59];
     [self.peripheralManager startAdvertising:peripheralData];
 }
 
@@ -88,8 +91,25 @@ static NSString * const BCProxmityIdentifier = @"com.nscodernightlondon.beachord
 #pragma mark CLLocationManager delegate methods
 
 - (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region {
+    self.beacons = beacons; // This is rough, there should be an API for getting data.
     NSLog(@"Beacons: %@", beacons);
     NSLog(@"Region: %@", region);
+}
+
+- (void)locationManager:(CLLocationManager *)manager rangingBeaconsDidFailForRegion:(CLBeaconRegion *)region withError:(NSError *)error {
+    NSLog(@"Region: %@, error: %@", region, error);
+}
+
+- (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
+    if ([region isKindOfClass:[CLBeaconRegion class]]) {
+        [self.locationManager startRangingBeaconsInRegion:(CLBeaconRegion *)region];
+    }
+}
+
+- (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region {
+    if ([region isKindOfClass:[CLBeaconRegion class]]) {
+        [self.locationManager stopRangingBeaconsInRegion:(CLBeaconRegion *)region];
+    }
 }
 
 @end
