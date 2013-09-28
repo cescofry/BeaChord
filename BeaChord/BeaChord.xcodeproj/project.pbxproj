@@ -265,6 +265,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = NSCoderNight;
 				TargetAttributes = {
+					A50A771C17F597B4004F8EA1 = {
+						DevelopmentTeam = 4V348KA677;
+					};
 					A50A773717F597B4004F8EA1 = {
 						TestTargetID = A50A771C17F597B4004F8EA1;
 					};
@@ -444,10 +447,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BeaChord/BeaChord-Prefix.pch";
 				INFOPLIST_FILE = "BeaChord/BeaChord-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -457,10 +463,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BeaChord/BeaChord-Prefix.pch";
 				INFOPLIST_FILE = "BeaChord/BeaChord-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

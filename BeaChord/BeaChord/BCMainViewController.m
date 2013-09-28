@@ -10,6 +10,7 @@
 
 #import "BCTone.h"
 #import "BCChord.h"
+#import "BCMelodyPlayer.h"
 
 @interface BCMainViewController ()
 
@@ -17,10 +18,11 @@
 @property (assign, nonatomic) BOOL isBroadcasting;
 @property (assign, nonatomic) BOOL isListening;
 @property (nonatomic, strong) BCChord *currentChord;
+@property (nonatomic, strong) BCMelodyPlayer *melodyPlayer;
 
 @property (nonatomic, strong) IBOutlet UISwitch *modeSwitch;
-@property (nonatomic, strong) IBOutlet UILabel *udidLabel;
 @property (nonatomic, strong) IBOutlet UISegmentedControl *segmentedControl;
+@property (nonatomic, strong) IBOutlet UITextView *textView;
 @property (nonatomic, strong) IBOutlet UIButton *startButton;
 
 @property (nonatomic, copy) IBOutletCollection(UIControl) NSArray *editableControls;
@@ -34,14 +36,28 @@
 @implementation BCMainViewController
 
 - (void)viewDidLoad {
+    
+    self.isInMelodyMode = YES;
+    
     [super viewDidLoad];
     self.beaconController = [BCBeaconController new];
-    [self.segmentedControl setAlpha:0.0]; // Initially hidden as player is the default
     
+    [self.segmentedControl setAlpha:(self.isInMelodyMode)?0.0 : 1.0];
+    [self.textView setAlpha:(self.isInMelodyMode)?0.0 : 1.0];
+    [self switchModeAction:self.modeSwitch];
+    
+}
+
+- (BCMelodyPlayer *)melodyPlayer {
+    if (!_melodyPlayer) _melodyPlayer = [BCMelodyPlayer sharedInstance];
+    return _melodyPlayer;
 }
 
 
 - (IBAction)switchModeAction:(id)sender {
+    
+    if (self.isInMelodyMode) return;
+    
     [self.segmentedControl setAlpha:([self isPlayer])? 0.0 : 1.0];
 }
 
@@ -87,17 +103,17 @@
     // Play Chord based on beacons
     if (!self.currentChord) {
         self.currentChord = [self chordFromBeacons:beacons];
-        [self.currentChord arpeggio];
-        return;
     }
-
-    BCChord *chord = [self chordFromBeacons:beacons];
-    if (![self.currentChord isEqual:chord]) {
+    else {
+        BCChord *chord = [self chordFromBeacons:beacons];
+        if ([self.currentChord isEqual:chord]) return;
+        
         [self.currentChord stop];
-
         self.currentChord = chord;
-        [self.currentChord arpeggio];
     }
+    
+    if (self.isInMelodyMode) [self.melodyPlayer synchMelodyAnPlay:self.currentChord];
+    else [self.currentChord arpeggio];
 
 }
 
@@ -133,6 +149,8 @@
     __block BCNote note = BCNoteA;
     __block float time = 0.3;
     __block BOOL isMajor;
+    
+    __block NSInteger sumProximity = 0;
 
     [beacons enumerateObjectsUsingBlock:^(CLBeacon *beacon, NSUInteger idx, BOOL *stop) {
         __block UInt16 major = [beacon.major integerValue];
@@ -160,14 +178,23 @@
             default:
                 break;
         }
+        
+        sumProximity += proximity;
+        
     }];
-
-    BCTone *tone = [BCTone toneFromNote:note];
-    BCChord *chord = (isMajor)? [BCChord majorChordFromTone:tone] : [BCChord minorChordFromTone:tone];
-
-    [chord.tones enumerateObjectsUsingBlock:^(BCTone *obj, NSUInteger idx, BOOL *stop) {
-        obj.duration = time;
-    }];
+    
+    BCChord *chord;
+    if (self.isInMelodyMode) {
+        chord = [self.melodyPlayer melodyOfType:sumProximity];
+    }
+    else {
+        BCTone *tone = [BCTone toneFromNote:note];
+        BCChord *chord = (isMajor)? [BCChord majorChordFromTone:tone] : [BCChord minorChordFromTone:tone];
+        
+        [chord.tones enumerateObjectsUsingBlock:^(BCTone *obj, NSUInteger idx, BOOL *stop) {
+            obj.duration = time;
+        }];
+    }
 
     return chord;
 }

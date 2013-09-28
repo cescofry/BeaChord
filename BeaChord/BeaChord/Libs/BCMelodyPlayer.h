@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "BCChord.h"
 typedef NS_ENUM(NSUInteger, BCMelodyType) {
     BCMelodyTypeMain,
     BCMelodyTypeBase,
@@ -17,7 +17,8 @@ typedef NS_ENUM(NSUInteger, BCMelodyType) {
 @interface BCMelodyPlayer : NSObject
 
 + (instancetype)sharedInstance;
-- (void)synchMelodyAnPlay:(BCMelodyType)melodyType;
+- (BCChord *)melodyOfType:(BCMelodyType)type;
+- (void)synchMelodyAnPlay:(BCChord *)melody;
 - (void)stop;
 
 @end

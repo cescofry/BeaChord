@@ -12,4 +12,6 @@
 
 @interface BCMainViewController : UIViewController <BCBeaconControllerDelegate>
 
+@property (nonatomic, assign) BOOL isInMelodyMode;
+
 @end
